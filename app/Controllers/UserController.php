@@ -78,8 +78,11 @@ class UserController extends BaseController
 
     public function dashboardClient()
     {
-        return view('client/dashboard');
-    }
+        $idUser = session()->get('user_id'); 
 
+        return view('client/dashboard', [
+            'idUser' => $idUser
+        ]);
+    }
 
 }
