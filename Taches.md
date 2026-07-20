@@ -55,3 +55,6 @@ jointure pour avoir l'historique de tout les clients
     - appeler fonction recuperer frais
     - appeler fonction inserer frais obtenu
 - Voir historique (Tsanta)
+   - ajout d'une fonction historiqueParClient() pour recuperer toute les historiques des clients connecter
+    - Creation d'une route historique
+    - Creation de view historique_client pour afficher l'historique
