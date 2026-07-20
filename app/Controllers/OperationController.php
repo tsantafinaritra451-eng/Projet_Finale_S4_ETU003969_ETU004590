@@ -36,11 +36,10 @@ class OperationController extends BaseController
             ]);
         }
 
-        $userId             = session()->get('user_id');
-        $idType             = (int) $this->request->getPost('idType');
-        $montant            = (float) $this->request->getPost('montant');
-        $numeroDestinataire = trim((string) $this->request->getPost('numero_destinataire'));
-        $inclureFrais       = $this->request->getPost('inclure_frais') === '1';
+        $userId = session()->get('user_id');
+        $idType = (int) $this->request->getPost('idType');
+        $montant = (float) $this->request->getPost('montant');
+        $inclureFrais = $this->request->getPost('inclure_frais') === '1';
 
         if (!$userId) {
             return $this->response->setJSON([
@@ -57,7 +56,7 @@ class OperationController extends BaseController
         }
 
         $typeModel = new TypeModel();
-        $type      = $typeModel->find($idType);
+        $type = $typeModel->find($idType);
 
         if (!$type) {
             return $this->response->setJSON([
@@ -67,14 +66,156 @@ class OperationController extends BaseController
         }
 
         $libelleType = mb_strtolower(trim($type['libelle']));
+        $userModel   = new UserModel();
+        $expediteur  = $userModel->find($userId);
         $db          = Config::connect();
 
         // -------------------------------------------------------------
-        // CAS 1 : RETRAIT AVEC DESTINATAIRE (Retrait chez A -> Dépôt chez B)
+        // CAS 1 : TRANSFERT (DIVISÉ ÉQUITABLEMENT)
         // -------------------------------------------------------------
-        if ($libelleType === 'retrait') {
+        if ($libelleType === 'transfert') {
 
-            // 1. Vérification de la présence du numéro
+            $numerosBruts = $this->request->getPost('numeros_destinataires');
+            $numeros = [];
+
+            if (is_array($numerosBruts)) {
+                foreach ($numerosBruts as $num) {
+                    $numTrim = trim((string)$num);
+                    if (!empty($numTrim)) {
+                        $numeros[] = $numTrim;
+                    }
+                }
+            }
+
+            if (empty($numeros)) {
+                return $this->response->setJSON([
+                    'status'  => 'error',
+                    'message' => 'Veuillez saisir au moins un numéro destinataire.'
+                ]);
+            }
+
+            // 1. Contrôle : tous les numéros doivent être valides et du MÊME OPÉRATEUR
+            $idOperateurReference = null;
+            $opRecepteur = null;
+            $destinatairesValides = [];
+
+            foreach ($numeros as $numero) {
+                $destinataire = $userModel->where('numero', $numero)->first();
+                if (!$destinataire) {
+                    return $this->response->setJSON([
+                        'status'  => 'error',
+                        'message' => 'Le numéro destinataire ' . esc($numero) . ' n\'existe pas dans le système.'
+                    ]);
+                }
+
+                if ($expediteur && $expediteur['numero'] === $numero) {
+                    return $this->response->setJSON([
+                        'status'  => 'error',
+                        'message' => 'Vous ne pouvez pas effectuer un transfert vers votre propre numéro (' . esc($numero) . ').'
+                    ]);
+                }
+
+                $operateur = $this->obtenirOperateurParNumero($numero);
+                if (!$operateur) {
+                    return $this->response->setJSON([
+                        'status'  => 'error',
+                        'message' => 'Opérateur introuvable pour le numéro : ' . esc($numero)
+                    ]);
+                }
+
+                if ($idOperateurReference === null) {
+                    $idOperateurReference = $operateur['id'];
+                    $opRecepteur = $operateur;
+                } elseif ($idOperateurReference !== $operateur['id']) {
+                    return $this->response->setJSON([
+                        'status'  => 'error',
+                        'message' => 'Erreur : Tous les numéros destinataires doivent appartenir au MÊME opérateur.'
+                    ]);
+                }
+
+                $destinatairesValides[] = $destinataire;
+            }
+
+            // 2. Division équitable du montant entre les destinataires
+            $nbDestinataires = count($destinatairesValides);
+            $montantParDestinataire = $montant / $nbDestinataires;
+
+            // 3. Identification de l'opérateur de l'expéditeur
+            $opExpediteur = $this->obtenirOperateurParNumero($expediteur['numero']);
+
+            // 4. Calcul des frais selon la tranche du montant individuel reçu
+            $fraisModel = new FraisModel();
+            $fraisUnitaire = (float) $fraisModel->getFraisAliquer($idType, $montantParDestinataire);
+            $fraisTotal = $fraisUnitaire;
+
+            // 5. Calcul de la commission par destinataire
+            $commissionOpRecepteur = 0.0;
+            $memeOperateur = ($opExpediteur && $opRecepteur && $opExpediteur['id'] === $opRecepteur['id']);
+
+            if (!$memeOperateur) {
+                $pctCommission = isset($opRecepteur['commission_pct']) ? (float)$opRecepteur['commission_pct'] : 0.0;
+                $commissionOpRecepteur = ($fraisUnitaire * $pctCommission) / 100;
+            }
+
+            // 6. Vérification du solde global de l'expéditeur
+            $montantTotalDebite = $montant + $fraisTotal;
+            $soldeActuel = $this->calculerSolde($userId);
+
+            if ($montantTotalDebite > $soldeActuel) {
+                return $this->response->setJSON([
+                    'status'  => 'error',
+                    'message' => 'Solde insuffisant ! Requis : ' . number_format($montantTotalDebite, 2, ',', ' ') . ' Ar (Montant: ' . number_format($montant, 2, ',', ' ') . ' + Frais: ' . number_format($fraisTotal, 2, ',', ' ') . ' Ar)'
+                ]);
+            }
+
+            // 7. Obtenir les types d'opérations
+            $typeTransfert = $typeModel->where('libelle', 'transfert')->first();
+            $typeDepot     = $typeModel->where('libelle', 'depot')->first();
+
+            // 8. Enregistrement transactionnel (double écriture par destinataire)
+            $db->transStart();
+
+            foreach ($destinatairesValides as $destinataire) {
+                // Débit individuel chez l'expéditeur
+                $this->operationModel->insert([
+                    'idUser'               => $userId,
+                    'idType'               => $typeTransfert['id'],
+                    'montant'              => $montantParDestinataire + $fraisUnitaire,
+                    'numero_destinataire'  => $destinataire['numero'],
+                    'frais_notre_gain'     => $fraisUnitaire,
+                    'commission_operateur' => 0.0,
+                    'idOperationParent'    => null
+                ]);
+
+                $idParent = $this->operationModel->getInsertID();
+
+                // Crédit de la part exacte reçue chez le destinataire
+                $this->operationModel->insert([
+                    'idUser'               => $destinataire['id'],
+                    'idType'               => $typeDepot['id'],
+                    'montant'              => $montantParDestinataire,
+                    'numero_destinataire'  => null,
+                    'frais_notre_gain'     => 0.0,
+                    'commission_operateur' => $commissionOpRecepteur,
+                    'idOperationParent'    => $idParent
+                ]);
+            }
+
+            $db->transComplete();
+
+            return $this->response->setJSON([
+                'status'  => 'success',
+                'message' => 'Transfert effectué ! Chaque destinataire (' . $nbDestinataires . ') a reçu ' . number_format($montantParDestinataire, 2, ',', ' ') . ' Ar.'
+            ]);
+        }
+
+        // -------------------------------------------------------------
+        // CAS 2 : RETRAIT AVEC DESTINATAIRE
+        // -------------------------------------------------------------
+        elseif ($libelleType === 'retrait') {
+
+            $numeroDestinataire = trim((string) $this->request->getPost('numero_destinataire'));
+
             if (empty($numeroDestinataire)) {
                 return $this->response->setJSON([
                     'status'  => 'error',
@@ -82,48 +223,20 @@ class OperationController extends BaseController
                 ]);
             }
 
-            // 2. Vérification de l'existence du destinataire dans la table user
-            $userModel    = new UserModel();
             $destinataire = $userModel->where('numero', $numeroDestinataire)->first();
-
             if (!$destinataire) {
                 return $this->response->setJSON([
                     'status'  => 'error',
-                    'message' => 'Le numéro destinataire (' . esc($numeroDestinataire) . ') n\'existe pas dans notre base de données.'
+                    'message' => 'Le numéro destinataire n\'existe pas.'
                 ]);
             }
 
-            // Empêcher l'envoi vers son propre numéro
-            $expediteur = $userModel->find($userId);
-            if ($expediteur && $expediteur['numero'] === $numeroDestinataire) {
-                return $this->response->setJSON([
-                    'status'  => 'error',
-                    'message' => 'Vous ne pouvez pas effectuer un retrait vers votre propre numéro.'
-                ]);
-            }
-
-            // 3. Identification des opérateurs (Expéditeur vs Receveur)
-            $opExpediteur = $this->obtenirOperateurParNumero($expediteur['numero']);
-            $opRecepteur  = $this->obtenirOperateurParNumero($numeroDestinataire);
-
-            // Types d'opérations requis pour la double écriture
-            $typeRetrait = $typeModel->where('libelle', 'retrait')->first();
-            $typeDepot   = $typeModel->where('libelle', 'depot')->first();
-
-            // 4. Calcul du frais selon le barème
-            $fraisModel      = new FraisModel();
+            $fraisModel = new FraisModel();
             $fraisExpediteur = (float) $fraisModel->getFraisAliquer($idType, $montant);
 
-            // Le receveur ne supporte aucun frais sur le dépôt reçu
-            $fraisRecepteur  = 0.0;
-
-            // 5. Calcul du montant débité
-            // Si "Inclure les frais" est coché : Retrait = Montant + Frais, Dépôt = Montant
             $montantRetrait = $inclureFrais ? ($montant + $fraisExpediteur) : $montant;
-            $montantDepot   = $montant;
+            $soldeActuel    = $this->calculerSolde($userId);
 
-            // 6. Vérification du solde de l'expéditeur
-            $soldeActuel = $this->calculerSolde($userId);
             if ($montantRetrait > $soldeActuel) {
                 return $this->response->setJSON([
                     'status'  => 'error',
@@ -131,10 +244,11 @@ class OperationController extends BaseController
                 ]);
             }
 
-            // 7. Enregistrement transactionnel en base de données
+            $typeRetrait = $typeModel->where('libelle', 'retrait')->first();
+            $typeDepot   = $typeModel->where('libelle', 'depot')->first();
+
             $db->transStart();
 
-            // Retrait chez l'expéditeur (frais du barème appliqués)
             $this->operationModel->insert([
                 'idUser'              => $userId,
                 'idType'              => $typeRetrait['id'],
@@ -146,13 +260,12 @@ class OperationController extends BaseController
 
             $idOperationParent = $this->operationModel->getInsertID();
 
-            // Dépôt chez le destinataire (0 frais)
             $this->operationModel->insert([
                 'idUser'              => $destinataire['id'],
                 'idType'              => $typeDepot['id'],
-                'montant'             => $montantDepot,
+                'montant'             => $montant,
                 'numero_destinataire' => null,
-                'frais_notre_gain'    => $fraisRecepteur,
+                'frais_notre_gain'    => 0.0,
                 'idOperationParent'   => $idOperationParent
             ]);
 
@@ -160,31 +273,35 @@ class OperationController extends BaseController
 
             return $this->response->setJSON([
                 'status'  => 'success',
-                'message' => 'Retrait/Envoi réussi vers le ' . esc($numeroDestinataire) . ' ! (Débité : ' . number_format($montantRetrait, 2, ',', ' ') . ' Ar)'
+                'message' => 'Retrait/Envoi réussi vers le ' . esc($numeroDestinataire) . ' !'
             ]);
         }
 
         // -------------------------------------------------------------
-        // CAS 2 : AUTRES OPÉRATIONS (DÉPÔT / TRANSFERT SIMPLE)
+        // CAS 3 : DÉPÔT SIMPLE (SUR SON PROPRE COMPTE)
         // -------------------------------------------------------------
         else {
             $fraisModel = new FraisModel();
             $frais      = (float) $fraisModel->getFraisAliquer($idType, $montant);
 
             $this->operationModel->insert([
-                'idUser'           => $userId,
-                'idType'           => $idType,
-                'montant'          => $montant-$frais,
-                'frais_notre_gain' => $frais
+                'idUser'              => $userId,
+                'idType'              => $idType,
+                'montant'             => $montant + $frais,
+                'numero_destinataire' => null,
+                'frais_notre_gain'    => $frais
             ]);
 
             return $this->response->setJSON([
                 'status'  => 'success',
-                'message' => 'Dépôt effectué avec succès !'
+                'message' => 'Dépôt de ' . number_format($montant, 2, ',', ' ') . ' Ar effectué sur votre compte avec succès !'
             ]);
         }
     }
 
+    /**
+     * Recherche de l'opérateur par préfixe via PrefixModel
+     */
     private function obtenirOperateurParNumero($numero)
     {
         $prefixModel = new PrefixModel();
@@ -195,7 +312,9 @@ class OperationController extends BaseController
             ->first();
     }
 
-   
+    /**
+     * Calcule le solde courant : Dépôt - (Retrait + Transfert)
+     */
     private function calculerSolde($userId)
     {
         $resultats = $this->operationModel->getTotauxParType($userId);
