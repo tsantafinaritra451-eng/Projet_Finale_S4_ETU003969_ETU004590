@@ -27,6 +27,11 @@
     - retrait (Miantra)
     - transfert (Miantra)
 - Voir situation compte client (Tsanta)
+    - creation de d'une model OperationModel avec tout les champs de la table operation avec une fonction getHistoriqueParUser c'est une script avec 
+jointure pour avoir l'historique de tout les clients
+    - creation de clientController pour avoir tout les clients ainsi qu'une methode de situation pour voir ses historiques  et ses solde
+    - creation de la routes clients
+    - creation de view pour afficher les listes de clients ainsi que les situation de chaque clients
 
 
 
