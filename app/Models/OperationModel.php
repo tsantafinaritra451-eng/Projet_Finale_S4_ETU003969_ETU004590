@@ -49,6 +49,10 @@ class OperationModel extends Model
         return $this->db->table('operation')
             ->select('type.libelle, SUM(operation.frais_notre_gain) as totalGains')
             ->join('type', 'type.id = operation.idType')
+            ->join('user', 'operation.idUser = user.id', 'inner')
+            ->join('prefix', 'SUBSTR(COALESCE(operation.numero_destinataire, user.numero), 1, 3) = prefix.valeur', 'inner')
+            ->join('operateur', 'prefix.idOperateur = operateur.id', 'inner')
+            ->where('operateur.est_interne', 1) // 1 = Uniquement Telmo !
             ->groupBy('operation.idType')
             ->get()->getResultArray();
     }
