@@ -21,7 +21,7 @@ $routes->get('/admin/clients/situation/(:num)', 'ClientController::situation/$1'
 $routes->get('/client/historique', 'ClientController::historiqueParClient');
 $routes->get('/admin/commissions', 'OperateurController::index');
 $routes->post('/admin/commissions/save', 'OperateurController::saveCommission');
-
+$routes->get('/admin/montants_a_envoyer', 'UserController::montantsAEnvoyer');
 
 
 
