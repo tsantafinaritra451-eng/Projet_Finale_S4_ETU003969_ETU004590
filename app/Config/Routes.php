@@ -18,7 +18,7 @@ $routes->get('/admin/frais/modifier/(:num)', 'FraisController::index/$1');
 $routes->post('/admin/frais/modifier/(:num)', 'FraisController::modifierBareme/$1');
 $routes->get('/admin/clients', 'ClientController::index');
 $routes->get('/admin/clients/situation/(:num)', 'ClientController::situation/$1');
-
+$routes->get('/client/historique', 'ClientController::historiqueParClient');
 
 
 

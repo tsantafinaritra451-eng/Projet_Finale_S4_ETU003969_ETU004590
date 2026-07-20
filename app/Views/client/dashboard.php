@@ -13,6 +13,8 @@
         <h1>Bienvenue sur votre espace client</h1>
         <p>
             <a href="<?= base_url('operation') ?>">+ Effectuer une opération</a>
+            <a href="<?= base_url('/client/historique') ?>">+ Voir mon historique</a>
+
         </p>
     </header>
 

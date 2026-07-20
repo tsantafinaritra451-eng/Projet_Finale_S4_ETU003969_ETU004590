@@ -70,3 +70,25 @@ in SYSTEMPATH/Session/Session.php on line 625.
 17 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 18 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 19 SYSTEMPATH/rewrite.php(44): require_once('/home/tsanta/Documents/S4/Examen Finale/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-20 09:01:50 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\FraisModel::getFraisPourMontant
+[Method: GET, Route: client/historique]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/ClientController.php(95): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\ClientController->historiqueParClient()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/tsanta/Documents/S4/Examen Finale/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-20 09:02:52 --> ErrorException: Trying to access array offset on float
+[Method: GET, Route: client/historique]
+in APPPATH/Controllers/ClientController.php on line 96.
+ 1 APPPATH/Controllers/ClientController.php(96): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\ClientController->historiqueParClient()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/tsanta/Documents/S4/Examen Finale/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')

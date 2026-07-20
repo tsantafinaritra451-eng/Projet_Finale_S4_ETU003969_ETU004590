@@ -26,4 +26,11 @@ class FraisModel extends Model
 
         return $frais ? (float)$frais['valeur_frais'] : 0.0;
     }
+    public function getFraisPourMontant($idType, $montant)
+    {
+        return $this->where('idType', $idType)
+                    ->where('baremeMin <=', $montant)
+                    ->where('baremeMax >=', $montant)
+                    ->first();
+    }
 }

@@ -28,7 +28,7 @@ class ClientController extends BaseController
     public function situation($id)
     {
         $user = $this->userModel->find($id);
-        
+
         if (!$user) {
             return redirect()->to('/admin/clients')->with('error', 'Utilisateur introuvable');
         }
@@ -40,13 +40,13 @@ class ClientController extends BaseController
 
         foreach ($operations as $op) {
             $fraisData = $this->fraisModel->getFraisPourMontant($op['idType'], $op['montant']);
-            $valeurFrais = $fraisData ? (float)$fraisData['valeur_frais'] : 0.0;
+            $valeurFrais = $fraisData ? (float) $fraisData['valeur_frais'] : 0.0;
 
             $impactSolde = 0;
             $libelleType = strtolower($op['type_libelle']);
 
             if ($libelleType === 'depot') {
-                $impactSolde = $op['montant'];
+                $impactSolde = ($op['montant'] - $valeurFrais);
             } elseif ($libelleType === 'retrait') {
                 $impactSolde = -($op['montant'] + $valeurFrais);
             } elseif ($libelleType === 'transfert') {
@@ -56,20 +56,72 @@ class ClientController extends BaseController
             $solde += $impactSolde;
 
             $historiqueComplet[] = [
-                'date'    => $op['date_operation'],
-                'type'    => $op['type_libelle'],
+                'date' => $op['date_operation'],
+                'type' => $op['type_libelle'],
                 'montant' => $op['montant'],
-                'frais'   => $valeurFrais,
-                'impact'  => $impactSolde
+                'frais' => $valeurFrais,
+                'impact' => $impactSolde
             ];
         }
 
         $data = [
-            'user'       => $user,
-            'solde'      => $solde,
+            'user' => $user,
+            'solde' => $solde,
             'historique' => $historiqueComplet
         ];
 
         return view('client/situation_client', $data);
     }
+    public function historiqueParClient()
+    {
+        $idUserConnecte = session()->get('user_id');
+
+        if (!$idUserConnecte) {
+            return redirect()->to('/')->with('error', 'Veuillez vous connecter.');
+        }
+
+        $user = $this->userModel->find($idUserConnecte);
+
+        if (!$user) {
+            return redirect()->to('/')->with('error', 'Utilisateur introuvable');
+        }
+
+        $operations = $this->operationModel->getHistoriqueParUser($idUserConnecte);
+
+        $historiqueComplet = [];
+        $solde = 0;
+
+        foreach ($operations as $op) {
+            $fraisData = $this->fraisModel->getFraisPourMontant($op['idType'], $op['montant']);
+            $valeurFrais = $fraisData ? (float) $fraisData['valeur_frais'] : 0.0;
+
+            $impactSolde = 0;
+            $libelleType = strtolower($op['type_libelle']);
+
+            if ($libelleType === 'depot') {
+                $impactSolde = ($op['montant'] - $valeurFrais);
+                } elseif ($libelleType === 'retrait') {
+                    $impactSolde = -($op['montant'] + $valeurFrais);
+            } elseif ($libelleType === 'transfert') {
+                $impactSolde = -($op['montant'] + $valeurFrais);
+            }
+
+            $solde += $impactSolde;
+
+            $historiqueComplet[] = [
+                'date' => $op['date_operation'],
+                'type' => $op['type_libelle'],
+                'montant' => $op['montant'],
+                'frais' => $valeurFrais,
+                'impact' => $impactSolde
+            ];
+        }
+
+        return view('client/historique_client', [
+            'user' => $user,
+            'solde' => $solde,
+            'historique' => $historiqueComplet
+        ]);
+    }
+
 }
