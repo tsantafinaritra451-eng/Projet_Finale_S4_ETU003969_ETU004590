@@ -46,7 +46,7 @@ class ClientController extends BaseController
             $libelleType = strtolower($op['type_libelle']);
 
             if ($libelleType === 'depot') {
-                $impactSolde = ($op['montant'] - $valeurFrais);
+                $impactSolde = $op['montant'];
             } elseif ($libelleType === 'retrait') {
                 $impactSolde = -($op['montant'] + $valeurFrais);
             } elseif ($libelleType === 'transfert') {
@@ -99,7 +99,7 @@ class ClientController extends BaseController
             $libelleType = strtolower($op['type_libelle']);
 
             if ($libelleType === 'depot') {
-                $impactSolde = ($op['montant'] - $valeurFrais);
+                $impactSolde = $op['montant'];
                 } elseif ($libelleType === 'retrait') {
                     $impactSolde = -($op['montant'] + $valeurFrais);
             } elseif ($libelleType === 'transfert') {
