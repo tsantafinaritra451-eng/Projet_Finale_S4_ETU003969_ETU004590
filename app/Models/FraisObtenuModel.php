@@ -16,12 +16,5 @@ class FraisObtenuModel extends Model
         'montant'
     ];
 
-    public function getGainsAdmin()
-    {
-        return $this->select('type.libelle, SUM(fraisObtenu.montant) as totalGains')
-                    ->join('type', 'type.id = fraisObtenu.idType')
-                    ->whereIn('LOWER(type.libelle)', ['retrait', 'transfert'])
-                    ->groupBy('type.libelle')
-                    ->findAll();
-    }
+   
 }

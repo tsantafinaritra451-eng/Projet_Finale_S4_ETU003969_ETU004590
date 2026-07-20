@@ -58,3 +58,31 @@ jointure pour avoir l'historique de tout les clients
    - ajout d'une fonction historiqueParClient() pour recuperer toute les historiques des clients connecter
     - Creation d'une route historique
     - Creation de view historique_client pour afficher l'historique
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## VERSION 2
+
+### Base 
+- ajout table operateur (Tsanta)
+- ajout idOperateur dans prefix (Tsanta)
+- ajout idOperateur dans frais (Tsanta)
+- ajout idOperateur dans fraisObtenu (Tsanta)
+- ajout idDestinataire dans table operation (Tsanta)
+
+### Cote operateur
+- configuration des prefixes pour l'operateur choisi (Tsanta)
+- configuration % commission transfert des autres operateurs (Tsanta)
+- situation gain pour chaque operateur (Tsanta)
+- compensation entre operateurs (Tsanta)
+
+
+### Cote client
+- option inclure frais pour type retrait (Tsanta)
+- si transfert -> operation depot vers numero destinataire (si existe) (Miantra)
+- si different operateur envoyer commission du frais vers eux, frais vers l'operateur qui envoye  (Miantra)
+- verifier le prefixe du numero a faire pour l'operation  (Miantra)
+- envoie multiple : chez meme operateur   (Miantra)
+

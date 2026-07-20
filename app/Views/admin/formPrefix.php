@@ -6,7 +6,7 @@
 
 <div class="page-header">
     <h1><?= isset($prefix) ? 'Modifier le préfixe' : 'Ajouter un préfixe' ?></h1>
-    <p>Les numéros commençant par ce préfixe seront acceptés à la connexion.</p>
+    <p>Associez ce préfixe à un opérateur pour gérer les règles de transfert.</p>
 </div>
 
 <div class="card" style="max-width:440px;">
@@ -14,8 +14,19 @@
     <form action="<?= base_url('prefix/save') ?>" method="post">
         <?= csrf_field() ?>
 
-        <!-- Champ caché stockant l'ID s'il s'agit d'une modification -->
         <input type="hidden" name="id" value="<?= isset($prefix) ? $prefix['id'] : '' ?>">
+
+        <div class="field">
+            <label for="idOperateur">Opérateur</label>
+            <select name="idOperateur" id="idOperateur" required>
+                <option value="">-- Choisir un opérateur --</option>
+                <?php foreach ($operateurs as $op): ?>
+                    <option value="<?= $op['id'] ?>" <?= (isset($prefix) && $prefix['idOperateur'] == $op['id']) ? 'selected' : '' ?>>
+                        <?= esc($op['nom']) ?> <?= $op['est_interne'] ? '(Interne)' : '(Externe)' ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
         <div class="field">
             <label for="valeur">Préfixe</label>

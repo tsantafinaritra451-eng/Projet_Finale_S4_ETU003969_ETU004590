@@ -19,8 +19,8 @@ $routes->post('/admin/frais/modifier/(:num)', 'FraisController::modifierBareme/$
 $routes->get('/admin/clients', 'ClientController::index');
 $routes->get('/admin/clients/situation/(:num)', 'ClientController::situation/$1');
 $routes->get('/client/historique', 'ClientController::historiqueParClient');
-
-
+$routes->get('/admin/commissions', 'OperateurController::index');
+$routes->post('/admin/commissions/save', 'OperateurController::saveCommission');
 
 
 
