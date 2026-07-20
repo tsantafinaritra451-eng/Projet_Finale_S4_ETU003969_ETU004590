@@ -6,7 +6,7 @@
 
 <div class="page-header">
     <h1>Effectuer une opération</h1>
-    <p>L'opération est enregistrée automatiquement dès que vous quittez le champ montant.</p>
+    <p>L'opération est enregistrée automatiquement dès que vous avez fini de saisir le montant.</p>
 </div>
 
 <div class="card" style="max-width:480px;">
@@ -36,18 +36,30 @@
 </div>
 
 <script>
-    document.getElementById('montant').addEventListener('blur', function () {
+    let saveTimer = null;
+    let enCours = false;
+
+    document.getElementById('montant').addEventListener('input', function () {
         let montantInput = this;
-        let montantVal = montantInput.value.trim();
         let messageDiv = document.getElementById('message');
 
         messageDiv.innerText = '';
         messageDiv.className = '';
 
-        if (montantVal === '' || parseFloat(montantVal) <= 0) {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(function () {
+            enregistrer(montantInput, messageDiv);
+        }, 800);
+    });
+
+    function enregistrer(montantInput, messageDiv) {
+        let montantVal = montantInput.value.trim();
+
+        if (montantVal === '' || parseFloat(montantVal) <= 0 || enCours) {
             return;
         }
 
+        enCours = true;
         let formData = new FormData(document.getElementById('operationForm'));
 
         fetch('<?= base_url('operation/save') ?>', {
@@ -73,8 +85,11 @@
             console.error('Erreur:', error);
             messageDiv.className = 'alert alert-error';
             messageDiv.innerText = "Une erreur est survenue lors de l'enregistrement.";
+        })
+        .finally(() => {
+            enCours = false;
         });
-    });
+    }
 </script>
 
 <?= $this->endSection() ?>
