@@ -22,6 +22,7 @@
              - Ajout des routes en appellons les methodes dans les controllers 
              - Création de view admin/liste_frais pour afficher les listes de toutes les types c'est a dire depot, retrait et transfert avec les actions CRUD
 - Verification des frais attribuer selon l'action (Miantra)
+    - creer fonction recuperer frais pour le montant dand FraisModel
 - Calcul des gains via les frais : (Miantra)
     - retrait (Miantra)
     - transfert (Miantra)
@@ -37,9 +38,12 @@
         - si valide creer user si pas encore present sinon recuperer l'user present
 
 - Calcul du solde du client connecter (Tsanta)
-- Faire depot automatique (Miantra)
-- Faire retrait automatique (Tsanta) :
-    - verifier solde
-- Faire transfert (Tsanta) :
-    - verifier solde
+    - appeler fonction calculer solde
+- Faire depot automatique (Miantra) 
+- Faire retrait automatique (Tsanta) 
+- Faire transfert (Tsanta) 
+    - creer fonction recuperer somme operation pour chaque type dans OperationModel
+    - creer fonction calculer solde user connecter
+    - creer fonction ajouter operation 
+    - appeler fonction recuperer frais
 - Voir historique (Tsanta)
