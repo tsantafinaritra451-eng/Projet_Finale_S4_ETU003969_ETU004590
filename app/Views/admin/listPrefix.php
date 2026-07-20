@@ -48,6 +48,7 @@
             <?php endif; ?>
         </tbody>
     </table>
-
+    <a href="<?= base_url('/admin/dashboard') ?>">Retour au Tableau de Bord Admin</a>
+     
 </body>
 </html>
