@@ -37,3 +37,14 @@ in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
  8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/tsanta/Documents/S4/Examen Finale/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-20 08:33:43 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\OperationModel::getHistoriqueParUser
+[Method: GET, Route: admin/clients/situation/1]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/ClientController.php(36): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\ClientController->situation()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/tsanta/Documents/S4/Examen Finale/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')

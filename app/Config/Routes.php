@@ -16,8 +16,8 @@ $routes->post('/admin/frais/ajout', 'FraisController::ajoutBareme');
 $routes->get('/admin/frais/supprimer/(:num)', 'FraisController::supprimerBareme/$1');
 $routes->get('/admin/frais/modifier/(:num)', 'FraisController::index/$1');
 $routes->post('/admin/frais/modifier/(:num)', 'FraisController::modifierBareme/$1');
-
-
+$routes->get('/admin/clients', 'ClientController::index');
+$routes->get('/admin/clients/situation/(:num)', 'ClientController::situation/$1');
 
 
 

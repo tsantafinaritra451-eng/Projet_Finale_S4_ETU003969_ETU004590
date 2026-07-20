@@ -29,4 +29,13 @@ class OperationModel extends Model
                     ->groupBy('type.libelle')
                     ->findAll();
     }
+
+    public function getHistoriqueParUser($idUser)
+    {
+        return $this->select('operation.*, type.libelle as type_libelle')
+                    ->join('type', 'type.id = operation.idType')
+                    ->where('operation.idUser', $idUser)
+                    ->orderBy('operation.date_operation', 'DESC')
+                    ->findAll();
+    }
 }
