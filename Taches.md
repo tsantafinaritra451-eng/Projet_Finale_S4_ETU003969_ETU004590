@@ -4,28 +4,30 @@
 - Configuration de la base sqlite (Miantra)
 - Conception base de donnees (Miantra/Tsanta)
 - Creation des tables (Tsanta)
-- Insertion des donnees de test 
+- Insertion des donnees de test (Miantra)
 
 
 ### Cote operateur
-- CRUD regex
-- Creation regex pour verifier numero valable de l'operateur (CRUD)
-- Verification des frais attribuer selon l'action 
-- CRUD type depot
-- CRUD type retrait
-- CRUD type transfert
-- Calcul des gains via les frais :
-    - retrait
-    - transfert
-- Voir situation compte client
+- CRUD regex (Miantra)
+- Creation regex pour verifier numero valable de l'operateur (CRUD) (Miantra)
+- CRUD type depot (Tsanta)
+- CRUD type retrait (Tsanta)
+- CRUD type transfert (Tsanta)
+- Verification des frais attribuer selon l'action (Miantra)
+- Calcul des gains via les frais : (Miantra)
+    - retrait (Miantra)
+    - transfert (Miantra)
+- Voir situation compte client (Tsanta)
 
 
 
 
 ### Cote client
-- Login automatique avec numero
-- Calcul du solde du client connecter
-- Faire depot automatique 
-- Faire retrait automatique
-- Faire transfert
-- Voir historique
+- Login automatique avec numero (Miantra)
+- Calcul du solde du client connecter (Tsanta)
+- Faire depot automatique (Miantra)
+- Faire retrait automatique (Tsanta) :
+    - verifier solde
+- Faire transfert (Tsanta) :
+    - verifier solde
+- Voir historique (Tsanta)
