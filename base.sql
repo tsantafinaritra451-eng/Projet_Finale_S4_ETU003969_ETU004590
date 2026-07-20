@@ -30,7 +30,10 @@ CREATE TABLE operation (
 
 CREATE TABLE prefix(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    valeur VARCHAR(50)
+    idType INTEGER NOT NULL,
+    valeur VARCHAR(50),
+    FOREIGN KEY (idType) REFERENCES type(id) ON DELETE CASCADE
+
 );
 
 CREATE Table fraisObtenu (
