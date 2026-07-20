@@ -13,10 +13,15 @@ class OperationModel extends Model
 
     protected $useTimestamps  = false;
 
+    // AJOUT DE TOUS LES CHAMPS MANQUANTS ICI
     protected $allowedFields  = [
         'idUser',
         'idType',
         'montant',
+        'numero_destinataire',   // Manquant
+        'frais_notre_gain',      // Manquant (Ton gain Telmo)
+        'commission_operateur',  // Manquant (Gain de l'autre opérateur)
+        'idOperationParent',     // Manquant (Regroupement envois multiples)
         'date_operation'
     ];
 
@@ -39,7 +44,7 @@ class OperationModel extends Model
                     ->findAll();
     }
 
-     public function getNosGainsParType()
+    public function getNosGainsParType()
     {
         return $this->db->table('operation')
             ->select('type.libelle, SUM(operation.frais_notre_gain) as totalGains')
@@ -52,9 +57,11 @@ class OperationModel extends Model
     {
         return $this->db->table('operation')
             ->select('operateur.nom as libelle, SUM(operation.commission_operateur) as totalGains')
-            ->join('prefix', 'SUBSTR(operation.numero_destinataire, 1, 3) = prefix.valeur')
+            ->from('prefix')
             ->join('operateur', 'prefix.idOperateur = operateur.id')
-            ->where('operateur.est_interne', 0) // Uniquement les externes
+            ->where('operateur.est_interne', 0)
+            ->join('user', 'operation.idUser = user.id', 'inner')
+            ->where('SUBSTR(COALESCE(operation.numero_destinataire, user.numero), 1, 3) = prefix.valeur', null, false)
             ->groupBy('operateur.id')
             ->get()->getResultArray();
     }

@@ -174,7 +174,7 @@ class OperationController extends BaseController
             $this->operationModel->insert([
                 'idUser'           => $userId,
                 'idType'           => $idType,
-                'montant'          => $montant,
+                'montant'          => $montant-$frais,
                 'frais_notre_gain' => $frais
             ]);
 
