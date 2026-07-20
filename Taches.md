@@ -58,3 +58,31 @@ jointure pour avoir l'historique de tout les clients
    - ajout d'une fonction historiqueParClient() pour recuperer toute les historiques des clients connecter
     - Creation d'une route historique
     - Creation de view historique_client pour afficher l'historique
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## VERSION 2
+
+### Base 
+- ajout table operateur
+- ajout idOperateur dans prefix
+- ajout idOperateur dans frais
+- ajout idOperateur dans fraisObtenu
+- ajout num destinataire dans table operation
+
+### Cote operateur
+- configuration des prefixes pour l'operateur choisi
+- configuration % commission transfert des autres operateurs
+- situation gain pour chaque operateur
+- compensation entre operateurs
+
+
+### Cote client
+- option inclure frais pour type retrait
+- si transfert -> operation depot vers numero destinataire (si existe) 
+- si different operateur envoyer commission du frais vers eux, frais vers l'operateur qui envoye
+- verifier le prefixe du numero a faire pour l'operation
+- envoie multiple : chez meme operateur 
+
