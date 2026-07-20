@@ -8,8 +8,12 @@
 
 
 ### Cote operateur
-- CRUD regex (Miantra)
-- Creation regex pour verifier numero valable de l'operateur (CRUD) (Miantra)
+- CRUD regex (Miantra) :
+    - creer fonction :
+        - save
+        - delete
+        - form(redirection page)
+    - creer vue listPrefix,formPrefix
 - CRUD type depot (Tsanta)
 - CRUD type retrait (Tsanta)
 - CRUD type transfert (Tsanta)
@@ -23,7 +27,11 @@
 
 
 ### Cote client
-- Login automatique avec numero (Miantra)
+- Login automatique avec numero (Miantra) :
+    - fonction redirect vers login
+    - fonction verifier si admin -> rediriger vers page admin sinon verifier regex :
+        - si valide creer user si pas encore present sinon recuperer l'user present
+
 - Calcul du solde du client connecter (Tsanta)
 - Faire depot automatique (Miantra)
 - Faire retrait automatique (Tsanta) :

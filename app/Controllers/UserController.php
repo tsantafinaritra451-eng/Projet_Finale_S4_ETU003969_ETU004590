@@ -21,7 +21,7 @@ class UserController extends BaseController
         $num = trim($this->request->getPost('num'));
         $userModel = new UserModel();
 
-       
+
         $adminNum = '0000000000';
 
         if ($num === $adminNum) {
@@ -30,7 +30,7 @@ class UserController extends BaseController
             if ($adminUser) {
                 session()->set([
                     'user_id' => $adminUser['id'],
-                    'numero'  => $adminUser['numero'],
+                    'numero' => $adminUser['numero'],
                     'is_admin' => true
                 ]);
                 return redirect()->to('/admin/dashboard');
@@ -49,7 +49,7 @@ class UserController extends BaseController
         $regexPattern = '/^(' . implode('|', $valeursPrefixes) . ')[0-9]{7}$/';
 
         if (!preg_match($regexPattern, $num)) {
-            return redirect()->back()->with('error', 'Numéro invalide ou préfixe non autorisé.');
+            return redirect()->back()->with('error', 'Numéro invalide.');
         }
 
         $user = $userModel->where('numero', $num)->first();
@@ -62,11 +62,24 @@ class UserController extends BaseController
         }
 
         session()->set([
-            'user_id'  => $user['id'],
-            'numero'   => $user['numero'],
+            'user_id' => $user['id'],
+            'numero' => $user['numero'],
             'is_admin' => false
         ]);
 
         return redirect()->to('/client/dashboard');
     }
+
+
+    public function dashboardAdmin()
+    {
+        return view('admin/dashboard');
+    }
+
+    public function dashboardClient()
+    {
+        return view('client/dashboard');
+    }
+
+
 }
