@@ -1,0 +1,96 @@
+ERROR - 2026-06-03 04:06:53 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Models/LoginModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Controllers/Home.php(20): App\Models\LoginModel->getUserByEmailWithDepartement()
+#6 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/CodeIgniter.php(951): App\Controllers\Home->validateLogin()
+#7 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#8 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#9 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#11 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#12 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/rewrite.php(44): require_once('...')
+#13 {main}
+CRITICAL - 2026-06-03 04:06:53 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: POST, Route: login]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Models/LoginModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Controllers/Home.php(20): App\Models\LoginModel->getUserByEmailWithDepartement()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Home->validateLogin()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+ERROR - 2026-06-03 04:08:20 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Models/LoginModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Controllers/Home.php(20): App\Models\LoginModel->getUserByEmailWithDepartement()
+#6 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/CodeIgniter.php(951): App\Controllers\Home->validateLogin()
+#7 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#8 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#9 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#11 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#12 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/rewrite.php(44): require_once('...')
+#13 {main}
+CRITICAL - 2026-06-03 04:08:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: POST, Route: login]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Models/LoginModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Controllers/Home.php(20): App\Models\LoginModel->getUserByEmailWithDepartement()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Home->validateLogin()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+ERROR - 2026-06-03 04:12:03 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Models/LoginModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Controllers/Home.php(20): App\Models\LoginModel->getUserByEmailWithDepartement()
+#6 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/CodeIgniter.php(951): App\Controllers\Home->validateLogin()
+#7 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#8 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#9 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#11 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#12 /home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/system/rewrite.php(44): require_once('...')
+#13 {main}
+CRITICAL - 2026-06-03 04:12:03 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: POST, Route: login]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Models/LoginModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Controllers/Home.php(20): App\Models\LoginModel->getUserByEmailWithDepartement()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Home->validateLogin()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
