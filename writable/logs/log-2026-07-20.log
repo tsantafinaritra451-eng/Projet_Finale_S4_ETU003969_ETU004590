@@ -48,47 +48,23 @@ in SYSTEMPATH/Model.php on line 761.
  6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
  8 SYSTEMPATH/rewrite.php(44): require_once('/home/tsanta/Documents/S4/Examen Finale/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
-CRITICAL - 2026-07-20 08:41:12 --> ErrorException: session_start(): Failed to decode session object. Session has been destroyed
-[Method: GET, Route: admin/clients/situation/4]
-in SYSTEMPATH/Session/Session.php on line 625.
- 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
- 2 SYSTEMPATH/Session/Session.php(625): session_start()
- 3 SYSTEMPATH/Session/Session.php(120): CodeIgniter\Session\Session->startSession()
- 4 SYSTEMPATH/Config/Services.php(715): CodeIgniter\Session\Session->start()
- 5 SYSTEMPATH/Config/BaseService.php(325): CodeIgniter\Config\Services::session()
- 6 SYSTEMPATH/Config/BaseService.php(264): CodeIgniter\Config\BaseService::__callStatic()
- 7 SYSTEMPATH/Config/Services.php(668): CodeIgniter\Config\BaseService::getSharedInstance()
- 8 SYSTEMPATH/Config/BaseService.php(334): CodeIgniter\Config\Services::session()
- 9 SYSTEMPATH/Config/BaseService.php(203): CodeIgniter\Config\BaseService::__callStatic()
-10 SYSTEMPATH/Common.php(1078): CodeIgniter\Config\BaseService::get()
-11 SYSTEMPATH/HTTP/RedirectResponse.php(134): service()
-12 APPPATH/Controllers/ClientController.php(33): CodeIgniter\HTTP\RedirectResponse->with()
-13 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\ClientController->situation()
-14 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
-15 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
-16 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
-17 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
-18 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
-19 SYSTEMPATH/rewrite.php(44): require_once('/home/tsanta/Documents/S4/Examen Finale/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
-CRITICAL - 2026-07-20 09:01:50 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\FraisModel::getFraisPourMontant
-[Method: GET, Route: client/historique]
-in SYSTEMPATH/Model.php on line 761.
- 1 APPPATH/Controllers/ClientController.php(95): CodeIgniter\Model->__call()
- 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\ClientController->historiqueParClient()
- 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
- 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
- 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
- 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
- 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
- 8 SYSTEMPATH/rewrite.php(44): require_once('/home/tsanta/Documents/S4/Examen Finale/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
-CRITICAL - 2026-07-20 09:02:52 --> ErrorException: Trying to access array offset on float
-[Method: GET, Route: client/historique]
-in APPPATH/Controllers/ClientController.php on line 96.
- 1 APPPATH/Controllers/ClientController.php(96): CodeIgniter\Debug\Exceptions->errorHandler()
- 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\ClientController->historiqueParClient()
- 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
- 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
- 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
- 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
- 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
- 8 SYSTEMPATH/rewrite.php(44): require_once('/home/tsanta/Documents/S4/Examen Finale/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-20 08:50:34 --> Error: Class "App\Controllers\FraisObtenuModel" not found
+[Method: GET, Route: admin/gains]
+in APPPATH/Controllers/UserController.php on line 91.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\UserController->gains()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-FINAL/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-20 08:51:08 --> Error: Class "App\Controllers\FraisObtenuModel" not found
+[Method: GET, Route: admin/gains]
+in APPPATH/Controllers/UserController.php on line 91.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\UserController->gains()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-FINAL/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
