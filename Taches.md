@@ -66,23 +66,23 @@ jointure pour avoir l'historique de tout les clients
 ## VERSION 2
 
 ### Base 
-- ajout table operateur (Tsanta)
-- ajout idOperateur dans prefix (Tsanta)
-- ajout idOperateur dans frais (Tsanta)
-- ajout idOperateur dans fraisObtenu (Tsanta)
-- ajout idDestinataire dans table operation (Tsanta)
+- (ok)ajout table operateur (Tsanta)
+- (ok)ajout idOperateur dans prefix (Tsanta)
+- (ok)ajout idOperateur dans frais (Tsanta)
+- (ok)ajout idOperateur dans fraisObtenu (Tsanta)
+- (ok)ajout idDestinataire dans table operation (Tsanta)
 
 ### Cote operateur
-- configuration des prefixes pour l'operateur choisi (Miantra)
-- configuration % commission transfert des autres operateurs (Miantra)
-- situation gain pour chaque operateur (Tsanta)
+- (ok)configuration des prefixes pour l'operateur choisi (Miantra)
+- (ok)configuration % commission transfert des autres operateurs (Miantra)
+- (ok)situation gain pour chaque operateur (Tsanta)
 - compensation entre operateurs (Tsanta)
 
 
 ### Cote client
-- option inclure frais pour type retrait (Tsanta)
-- si transfert -> operation depot vers numero destinataire (si existe) (Miantra)
-- si different operateur envoyer commission du frais vers eux, frais vers l'operateur qui envoye  (Miantra)
-- verifier le prefixe du numero a faire pour l'operation  (Miantra)
+- (ok)option inclure frais pour type retrait (Tsanta)
+- (ok)si transfert -> operation depot vers numero destinataire (si existe) (Miantra)
+- (ok)si different operateur envoyer commission du frais vers eux, frais vers l'operateur qui envoye  (Miantra)
+- (ok)verifier le prefixe du numero a faire pour l'operation  (Miantra)
 - envoie multiple : chez meme operateur   (Miantra)
 

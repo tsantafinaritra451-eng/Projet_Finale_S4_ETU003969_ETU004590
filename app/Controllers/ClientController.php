@@ -39,18 +39,20 @@ class ClientController extends BaseController
         $solde = 0;
 
         foreach ($operations as $op) {
-            $fraisData = $this->fraisModel->getFraisPourMontant($op['idType'], $op['montant']);
-            $valeurFrais = $fraisData ? (float) $fraisData['valeur_frais'] : 0.0;
+            // Frais réellement prélevés lors de l'opération : ils sont figés en base.
+            // Les recalculer via le barème fausserait l'historique (opérateur externe,
+            // frais non inclus, ou barème modifié depuis).
+            $valeurFrais = (float) $op['frais_notre_gain'];
 
             $impactSolde = 0;
             $libelleType = strtolower($op['type_libelle']);
 
+            // 'montant' est déjà le montant net débité/crédité : il contient les frais
+            // quand ceux-ci ont été inclus. Ne pas les rajouter ici.
             if ($libelleType === 'depot') {
                 $impactSolde = $op['montant'];
-            } elseif ($libelleType === 'retrait') {
-                $impactSolde = -($op['montant'] + $valeurFrais);
-            } elseif ($libelleType === 'transfert') {
-                $impactSolde = -($op['montant'] + $valeurFrais);
+            } elseif ($libelleType === 'retrait' || $libelleType === 'transfert') {
+                $impactSolde = -$op['montant'];
             }
 
             $solde += $impactSolde;
@@ -92,18 +94,20 @@ class ClientController extends BaseController
         $solde = 0;
 
         foreach ($operations as $op) {
-            $fraisData = $this->fraisModel->getFraisPourMontant($op['idType'], $op['montant']);
-            $valeurFrais = $fraisData ? (float) $fraisData['valeur_frais'] : 0.0;
+            // Frais réellement prélevés lors de l'opération : ils sont figés en base.
+            // Les recalculer via le barème fausserait l'historique (opérateur externe,
+            // frais non inclus, ou barème modifié depuis).
+            $valeurFrais = (float) $op['frais_notre_gain'];
 
             $impactSolde = 0;
             $libelleType = strtolower($op['type_libelle']);
 
+            // 'montant' est déjà le montant net débité/crédité : il contient les frais
+            // quand ceux-ci ont été inclus. Ne pas les rajouter ici.
             if ($libelleType === 'depot') {
                 $impactSolde = $op['montant'];
-            } elseif ($libelleType === 'retrait') {
-                $impactSolde = -($op['montant'] + $valeurFrais);
-            } elseif ($libelleType === 'transfert') {
-                $impactSolde = -($op['montant'] + $valeurFrais);
+            } elseif ($libelleType === 'retrait' || $libelleType === 'transfert') {
+                $impactSolde = -$op['montant'];
             }
 
             $solde += $impactSolde;

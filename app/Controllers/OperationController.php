@@ -231,9 +231,17 @@ class OperationController extends BaseController
                 ]);
             }
 
-            $fraisModel = new FraisModel();
-            $fraisExpediteur = (float) $fraisModel->getFraisAliquer($idType, $montant);
+            // Seul notre opérateur interne (Telmo) possède un barème de frais.
+            // Si le compte connecté est externe (Orange, Airtel...), aucun frais n'est perçu.
+            $fraisExpediteur = 0.0;
 
+            if ($expediteur && $this->estOperateurInterne($expediteur['numero'])) {
+                $fraisModel      = new FraisModel();
+                $fraisExpediteur = (float) $fraisModel->getFraisAliquer($idType, $montant);
+            }
+
+            // « Inclure les frais » ne joue que sur le débit du solde : sans cette option
+            // le solde n'est amputé que du montant, mais le barème reste acquis à l'opérateur.
             $montantRetrait = $inclureFrais ? ($montant + $fraisExpediteur) : $montant;
             $soldeActuel    = $this->calculerSolde($userId);
 
@@ -250,23 +258,27 @@ class OperationController extends BaseController
             $db->transStart();
 
             $this->operationModel->insert([
-                'idUser'              => $userId,
-                'idType'              => $typeRetrait['id'],
-                'montant'             => $montantRetrait,
-                'numero_destinataire' => $numeroDestinataire,
-                'frais_notre_gain'    => $fraisExpediteur,
-                'idOperationParent'   => null
+                'idUser'               => $userId,
+                'idType'               => $typeRetrait['id'],
+                'montant'              => $montantRetrait,
+                'numero_destinataire'  => $numeroDestinataire,
+                'frais_notre_gain'     => $fraisExpediteur,
+                'commission_operateur' => 0.0,
+                'idOperationParent'    => null
             ]);
 
             $idOperationParent = $this->operationModel->getInsertID();
 
+            // L'opérateur du destinataire ne perçoit rien sur un retrait :
+            // le barème appartient entièrement à l'opérateur de l'expéditeur.
             $this->operationModel->insert([
-                'idUser'              => $destinataire['id'],
-                'idType'              => $typeDepot['id'],
-                'montant'             => $montant,
-                'numero_destinataire' => null,
-                'frais_notre_gain'    => 0.0,
-                'idOperationParent'   => $idOperationParent
+                'idUser'               => $destinataire['id'],
+                'idType'               => $typeDepot['id'],
+                'montant'              => $montant,
+                'numero_destinataire'  => null,
+                'frais_notre_gain'     => 0.0,
+                'commission_operateur' => 0.0,
+                'idOperationParent'    => $idOperationParent
             ]);
 
             $db->transComplete();
@@ -281,15 +293,23 @@ class OperationController extends BaseController
         // CAS 3 : DÉPÔT SIMPLE (SUR SON PROPRE COMPTE)
         // -------------------------------------------------------------
         else {
-            $fraisModel = new FraisModel();
-            $frais      = (float) $fraisModel->getFraisAliquer($idType, $montant);
+            // Le barème de frais n'existe que chez notre opérateur interne (Telmo).
+            // Si le compte connecté appartient à un opérateur externe (Orange, Airtel...),
+            // aucun frais n'est prélevé et personne ne perçoit de gain.
+            $frais = 0.0;
+
+            if ($expediteur && $this->estOperateurInterne($expediteur['numero'])) {
+                $fraisModel = new FraisModel();
+                $frais      = (float) $fraisModel->getFraisAliquer($idType, $montant);
+            }
 
             $this->operationModel->insert([
-                'idUser'              => $userId,
-                'idType'              => $idType,
-                'montant'             => $montant - $frais,
-                'numero_destinataire' => null,
-                'frais_notre_gain'    => $frais
+                'idUser'               => $userId,
+                'idType'               => $idType,
+                'montant'              => $montant - $frais,
+                'numero_destinataire'  => null,
+                'frais_notre_gain'     => $frais,
+                'commission_operateur' => 0.0
             ]);
 
             return $this->response->setJSON([
@@ -306,10 +326,24 @@ class OperationController extends BaseController
     {
         $prefixModel = new PrefixModel();
 
+        $numeroEchappe = Config::connect()->escape($numero);
+
         return $prefixModel->select('operateur.*')
             ->join('operateur', 'operateur.id = prefix.idOperateur')
-            ->where('? LIKE CONCAT(prefix.valeur, "%")', [$numero])
+            ->where("{$numeroEchappe} LIKE prefix.valeur || '%'", null, false)
+            ->orderBy('LENGTH(prefix.valeur)', 'DESC', false)
             ->first();
+    }
+
+    /**
+     * Le barème de frais ne s'applique qu'aux numéros de notre opérateur interne (Telmo).
+     * Un numéro externe (Orange, Airtel...) n'a pas de barème : aucun frais, donc aucun gain.
+     */
+    private function estOperateurInterne($numero)
+    {
+        $operateur = $this->obtenirOperateurParNumero($numero);
+
+        return $operateur && (int) $operateur['est_interne'] === 1;
     }
 
     /**
