@@ -12,19 +12,26 @@
         <p><?= session()->getFlashdata('success') ?></p>
     <?php endif; ?>
 
-    <h2>Ajouter un bareme</h2>
-    <form action="<?= base_url('/admin/frais/ajout') ?>" method="POST">
+    <h2><?= $baremeEnCours ? 'Modifier le bareme' : 'Ajouter un bareme' ?></h2>
+    
+    <form action="<?= $baremeEnCours ? base_url('/admin/frais/modifier/'.$baremeEnCours['id']) : base_url('/admin/frais/ajout') ?>" method="POST">
+        
         <label>Type d'operation :</label>
         <select name="idType" required>
-            <option value="1">Depot</option>
-            <option value="2">Retrait</option>
-            <option value="3">Transfert</option>
+            <option value="1" <?= ($baremeEnCours && $baremeEnCours['idType'] == 1) ? 'selected' : '' ?>>Depot</option>
+            <option value="2" <?= ($baremeEnCours && $baremeEnCours['idType'] == 2) ? 'selected' : '' ?>>Retrait</option>
+            <option value="3" <?= ($baremeEnCours && $baremeEnCours['idType'] == 3) ? 'selected' : '' ?>>Transfert</option>
         </select>
         
-        <input type="number" name="baremeMin" placeholder="Min" required>
-        <input type="number" name="baremeMax" placeholder="Max" required>
-        <input type="number" name="valeur_frais" placeholder="Frais" required>
-        <button type="submit">Ajouter</button>
+        <input type="number" name="baremeMin" placeholder="Min" value="<?= $baremeEnCours ? $baremeEnCours['baremeMin'] : '' ?>" required>
+        <input type="number" name="baremeMax" placeholder="Max" value="<?= $baremeEnCours ? $baremeEnCours['baremeMax'] : '' ?>" required>
+        <input type="number" name="valeur_frais" placeholder="Frais" value="<?= $baremeEnCours ? $baremeEnCours['valeur_frais'] : '' ?>" required>
+        
+        <button type="submit"><?= $baremeEnCours ? 'Modifier' : 'Ajouter' ?></button>
+        
+        <?php if ($baremeEnCours): ?>
+            <a href="<?= base_url('/admin/frais') ?>">Annuler</a>
+        <?php endif; ?>
     </form>
 
     <h2>Liste globale des baremes</h2>
@@ -44,6 +51,7 @@
                     <td><?= $f['baremeMin'] ?> - <?= $f['baremeMax'] ?></td>
                     <td><?= $f['valeur_frais'] ?></td>
                     <td><a href="<?= base_url('/admin/frais/supprimer/'.$f['id']) ?>">Supprimer</a></td>
+                    <td><a href="<?= base_url('/admin/frais/modifier/'.$f['id']) ?>">Modifier</a></td>
                 </tr>
             <?php endforeach; ?>
 
@@ -53,6 +61,7 @@
                     <td><?= $f['baremeMin'] ?> - <?= $f['baremeMax'] ?></td>
                     <td><?= $f['valeur_frais'] ?></td>
                     <td><a href="<?= base_url('/admin/frais/supprimer/'.$f['id']) ?>">Supprimer</a></td>
+                    <td><a href="<?= base_url('/admin/frais/modifier/'.$f['id']) ?>">Modifier</a></td>
                 </tr>
             <?php endforeach; ?>
 
@@ -62,6 +71,7 @@
                     <td><?= $f['baremeMin'] ?> - <?= $f['baremeMax'] ?></td>
                     <td><?= $f['valeur_frais'] ?></td>
                     <td><a href="<?= base_url('/admin/frais/supprimer/'.$f['id']) ?>">Supprimer</a></td>
+                    <td><a href="<?= base_url('/admin/frais/modifier/'.$f['id']) ?>">Modifier</a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

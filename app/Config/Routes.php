@@ -14,8 +14,8 @@ use CodeIgniter\Router\RouteCollection;
  $routes->get('/admin/frais', 'FraisController::index');   
 $routes->post('/admin/frais/ajout', 'FraisController::ajoutBareme');
 $routes->get('/admin/frais/supprimer/(:num)', 'FraisController::supprimerBareme/$1');
-
-    
+$routes->get('/admin/frais/modifier/(:num)', 'FraisController::index/$1');
+$routes->post('/admin/frais/modifier/(:num)', 'FraisController::modifierBareme/$1');    
 
 
 
