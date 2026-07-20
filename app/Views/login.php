@@ -33,7 +33,6 @@
                     <div class="field">
                         <label for="num">Numéro de téléphone</label>
                         <input type="tel" name="num" id="num" placeholder="Numéro à 10 chiffres" required autofocus>
-                        <p class="hint">Aucune inscription préalable n'est nécessaire.</p>
                     </div>
 
                     <button type="submit" class="btn">Se connecter</button>
