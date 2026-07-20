@@ -100,8 +100,8 @@ class ClientController extends BaseController
 
             if ($libelleType === 'depot') {
                 $impactSolde = $op['montant'];
-                } elseif ($libelleType === 'retrait') {
-                    $impactSolde = -($op['montant'] + $valeurFrais);
+            } elseif ($libelleType === 'retrait') {
+                $impactSolde = -($op['montant'] + $valeurFrais);
             } elseif ($libelleType === 'transfert') {
                 $impactSolde = -($op['montant'] + $valeurFrais);
             }
