@@ -119,4 +119,21 @@ class UserController extends BaseController
             'totalGeneral' => $totalGeneral
         ]);
     }
+
+    public function montantsAEnvoyer()
+    {
+        $operationModel = new \App\Models\OperationModel();
+
+        $commissionsSortantes = $operationModel->getCommissionsAEnvoyer();
+
+        $totalCommissionsGlobal = 0;
+        foreach ($commissionsSortantes as $flux) {
+            $totalCommissionsGlobal += (float) $flux['total_commissions'];
+        }
+
+        return view('admin/montants_a_envoyer', [
+            'commissionsSortantes' => $commissionsSortantes,
+            'totalCommissionsGlobal' => $totalCommissionsGlobal
+        ]);
+    }
 }
