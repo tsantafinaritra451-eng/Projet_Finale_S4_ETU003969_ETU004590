@@ -10,6 +10,10 @@
 <body>
     <p>
         <a href="<?= base_url('prefix') ?>">Voir la liste des préfixes</a>
+        <a href="<?= base_url('/admin/frais') ?>">Voir liste des frais</a>
+        <a href="<?= base_url('/admin/clients') ?>">Voir liste des clients</a>
+
+
     </p>
 </body>
 

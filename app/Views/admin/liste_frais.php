@@ -76,6 +76,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <a href="<?= base_url('/admin/clients') ?>">voir liste clients</a>
 
 </body>
 </html>
