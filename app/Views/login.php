@@ -13,6 +13,8 @@
 
     <form action="<?= base_url('user/login') ?>" method="post">
         <?= csrf_field() ?>
+        <p>Numero de l'admin : 0000000000</p>
+        <p>Numero doit commencer par : 032/039/037</p>
         <p>Entrer un numéro : 
             <input type="tel" name="num" id="num" required>
         </p>
