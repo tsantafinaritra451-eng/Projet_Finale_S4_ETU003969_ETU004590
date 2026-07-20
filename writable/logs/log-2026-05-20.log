@@ -1,0 +1,355 @@
+CRITICAL - 2026-05-20 06:50:23 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "layout.php"
+[Method: GET, Route: dashboard-employe]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/EmployeController.php(64): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\EmployeController->dashboard()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/rivaldo/Bossy S4/GITHUB/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 06:50:24 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "layout.php"
+[Method: GET, Route: dashboard-employe]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/EmployeController.php(64): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\EmployeController->dashboard()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/rivaldo/Bossy S4/GITHUB/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 06:50:25 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "layout.php"
+[Method: GET, Route: dashboard-employe]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/EmployeController.php(64): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\EmployeController->dashboard()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/rivaldo/Bossy S4/GITHUB/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 06:50:25 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "layout.php"
+[Method: GET, Route: dashboard-employe]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/EmployeController.php(64): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\EmployeController->dashboard()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/rivaldo/Bossy S4/GITHUB/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 06:52:15 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "layout.php"
+[Method: GET, Route: employe/dashboard]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/EmployeController.php(64): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\EmployeController->dashboard()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/rivaldo/Bossy S4/GITHUB/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 07:16:13 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "layout.php"
+[Method: GET, Route: calendrier-congees]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/CalendrierCongees.php(8): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CalendrierCongees->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/rivaldo/Bossy S4/GITHUB/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 07:20:19 --> Error: Object of class CodeIgniter\View\View could not be converted to string
+[Method: GET, Route: calendrier-congees]
+in APPPATH/Views/employe/background-events.php on line 101.
+ 1 SYSTEMPATH/View/View.php(240): include()
+ 2 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/CalendrierCongees.php(8): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CalendrierCongees->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/rivaldo/Bossy S4/GITHUB/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 07:21:47 --> Error: Object of class CodeIgniter\View\View could not be converted to string
+[Method: GET, Route: calendrier-congees]
+in APPPATH/Views/employe/background-events.php on line 101.
+ 1 SYSTEMPATH/View/View.php(240): include()
+ 2 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/CalendrierCongees.php(8): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CalendrierCongees->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/rivaldo/Bossy S4/GITHUB/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 07:21:48 --> Error: Object of class CodeIgniter\View\View could not be converted to string
+[Method: GET, Route: calendrier-congees]
+in APPPATH/Views/employe/background-events.php on line 101.
+ 1 SYSTEMPATH/View/View.php(240): include()
+ 2 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 4 APPPATH/Controllers/CalendrierCongees.php(8): view()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CalendrierCongees->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/rivaldo/Bossy S4/GITHUB/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:18:25 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/dashboard]
+in APPPATH/Views/admin/dashboard-admin.php on line 86.
+ 1 APPPATH/Views/admin/dashboard-admin.php(86): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/dashboard-admin.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(104): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->dashboard()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:18:29 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/dashboard]
+in APPPATH/Views/admin/dashboard-admin.php on line 86.
+ 1 APPPATH/Views/admin/dashboard-admin.php(86): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/dashboard-admin.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(104): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->dashboard()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:18:47 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/dashboard]
+in APPPATH/Views/admin/dashboard-admin.php on line 86.
+ 1 APPPATH/Views/admin/dashboard-admin.php(86): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/dashboard-admin.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(104): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->dashboard()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:20:10 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/dashboard]
+in APPPATH/Views/admin/dashboard-admin.php on line 86.
+ 1 APPPATH/Views/admin/dashboard-admin.php(86): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/dashboard-admin.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(104): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->dashboard()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:20:14 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/layout/header.php"
+[Method: GET, Route: admin/statMois]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 3 APPPATH/Views/admin/grapheMois.php(12): view()
+ 4 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/grapheMois.php')
+ 5 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 7 APPPATH/Controllers/AdminController.php(745): view()
+ 8 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->showStatistiqueMois()
+ 9 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:21:43 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/layout/header.php"
+[Method: GET, Route: admin/statMois]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 3 APPPATH/Views/admin/grapheMois.php(12): view()
+ 4 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/grapheMois.php')
+ 5 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 7 APPPATH/Controllers/AdminController.php(745): view()
+ 8 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->showStatistiqueMois()
+ 9 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:21:54 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/dashboard]
+in APPPATH/Views/admin/dashboard-admin.php on line 86.
+ 1 APPPATH/Views/admin/dashboard-admin.php(86): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/dashboard-admin.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(104): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->dashboard()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:30:07 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/soldes]
+in APPPATH/Views/admin/soldes.php on line 53.
+ 1 APPPATH/Views/admin/soldes.php(53): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/soldes.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(546): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->soldes()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:30:10 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/dashboard]
+in APPPATH/Views/admin/dashboard-admin.php on line 86.
+ 1 APPPATH/Views/admin/dashboard-admin.php(86): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/dashboard-admin.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(104): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->dashboard()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:30:11 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/dashboard]
+in APPPATH/Views/admin/dashboard-admin.php on line 86.
+ 1 APPPATH/Views/admin/dashboard-admin.php(86): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/dashboard-admin.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(104): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->dashboard()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:30:13 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/employes]
+in APPPATH/Views/admin/employes.php on line 54.
+ 1 APPPATH/Views/admin/employes.php(54): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/employes.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(153): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->employes()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:33:51 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/demandes]
+in APPPATH/Views/admin/demandes.php on line 84.
+ 1 APPPATH/Views/admin/demandes.php(84): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/demandes.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(651): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->demandes()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:33:56 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/soldes]
+in APPPATH/Views/admin/soldes.php on line 53.
+ 1 APPPATH/Views/admin/soldes.php(53): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/soldes.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(546): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->soldes()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:33:58 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/departements]
+in APPPATH/Views/admin/departements.php on line 43.
+ 1 APPPATH/Views/admin/departements.php(43): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/departements.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(315): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->departements()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
+CRITICAL - 2026-05-20 09:34:02 --> ErrorException: Undefined variable $navClass
+[Method: GET, Route: admin/demandes]
+in APPPATH/Views/admin/demandes.php on line 84.
+ 1 APPPATH/Views/admin/demandes.php(84): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/app/Views/admin/demandes.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(651): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->demandes()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-RIVALDO/itu.s4.SysInfo.Congee_suite/public/index.php')
