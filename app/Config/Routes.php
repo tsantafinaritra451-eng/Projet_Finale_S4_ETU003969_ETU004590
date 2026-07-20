@@ -73,3 +73,5 @@ $routes->group('prefix', function ($routes) {
 $routes->get('operation', 'OperationController::index');
 $routes->post('operation/save', 'OperationController::save');
 
+$routes->get('admin/gains', 'UserController::gains');
+

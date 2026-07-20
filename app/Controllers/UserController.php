@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 use App\Models\PrefixModel;
+use App\Models\FraisObtenuModel;
+
 
 class UserController extends BaseController
 {
@@ -85,4 +87,21 @@ class UserController extends BaseController
         ]);
     }
 
+
+    public function gains()
+    {
+        $fraisObtenuModel = new FraisObtenuModel();
+        
+        $gains = $fraisObtenuModel->getGainsAdmin();
+
+        $totalGeneral = 0;
+        foreach ($gains as $gain) {
+            $totalGeneral += (float) $gain['totalGains'];
+        }
+
+        return view('admin/gains', [
+            'gains'        => $gains,
+            'totalGeneral' => $totalGeneral
+        ]);
+    }
 }

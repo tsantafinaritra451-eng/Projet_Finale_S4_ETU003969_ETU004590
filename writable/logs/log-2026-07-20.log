@@ -48,3 +48,23 @@ in SYSTEMPATH/Model.php on line 761.
  6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
  8 SYSTEMPATH/rewrite.php(44): require_once('/home/tsanta/Documents/S4/Examen Finale/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-20 08:50:34 --> Error: Class "App\Controllers\FraisObtenuModel" not found
+[Method: GET, Route: admin/gains]
+in APPPATH/Controllers/UserController.php on line 91.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\UserController->gains()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-FINAL/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-20 08:51:08 --> Error: Class "App\Controllers\FraisObtenuModel" not found
+[Method: GET, Route: admin/gains]
+in APPPATH/Controllers/UserController.php on line 91.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\UserController->gains()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-FINAL/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
