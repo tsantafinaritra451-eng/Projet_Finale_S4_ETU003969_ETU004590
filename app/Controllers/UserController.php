@@ -88,7 +88,7 @@ class UserController extends BaseController
 
     public function dashboardClient()
     {
-        $idUser = session()->get('user_id'); 
+        $idUser = session()->get('user_id');
 
         return view('client/dashboard', [
             'idUser' => $idUser
@@ -98,17 +98,24 @@ class UserController extends BaseController
 
     public function gains()
     {
-        $fraisObtenuModel = new FraisObtenuModel();
-        
-        $gains = $fraisObtenuModel->getGainsAdmin();
+        $operationModel = new \App\Models\OperationModel();
 
+        $nosGains = $operationModel->getNosGainsParType();
+
+        $gainsAutres = $operationModel->getGainsAutresOperateurs();
+
+        // 3. Calcul du total général cumulé
         $totalGeneral = 0;
-        foreach ($gains as $gain) {
+        foreach ($nosGains as $gain) {
+            $totalGeneral += (float) $gain['totalGains'];
+        }
+        foreach ($gainsAutres as $gain) {
             $totalGeneral += (float) $gain['totalGains'];
         }
 
         return view('admin/gains', [
-            'gains'        => $gains,
+            'nosGains' => $nosGains,
+            'gainsAutres' => $gainsAutres,
             'totalGeneral' => $totalGeneral
         ]);
     }

@@ -4,15 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PrefixModel extends Model
+class OperateurModel extends Model
 {
-    protected $table = 'prefix';
+    protected $table = 'operateur';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
 
     protected $allowedFields = [
-        'valeur',
-        'idOperateur' // Ajouté pour la V2
+        'nom',
+        'est_interne',
+        'commission_pct'
     ];
 }

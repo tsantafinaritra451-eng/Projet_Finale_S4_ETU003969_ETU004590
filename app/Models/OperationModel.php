@@ -38,4 +38,24 @@ class OperationModel extends Model
                     ->orderBy('operation.date_operation', 'DESC')
                     ->findAll();
     }
+
+     public function getNosGainsParType()
+    {
+        return $this->db->table('operation')
+            ->select('type.libelle, SUM(operation.frais_notre_gain) as totalGains')
+            ->join('type', 'type.id = operation.idType')
+            ->groupBy('operation.idType')
+            ->get()->getResultArray();
+    }
+
+    public function getGainsAutresOperateurs()
+    {
+        return $this->db->table('operation')
+            ->select('operateur.nom as libelle, SUM(operation.commission_operateur) as totalGains')
+            ->join('prefix', 'SUBSTR(operation.numero_destinataire, 1, 3) = prefix.valeur')
+            ->join('operateur', 'prefix.idOperateur = operateur.id')
+            ->where('operateur.est_interne', 0) // Uniquement les externes
+            ->groupBy('operateur.id')
+            ->get()->getResultArray();
+    }
 }

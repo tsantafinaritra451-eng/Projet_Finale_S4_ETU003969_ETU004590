@@ -43,6 +43,14 @@
         <p>Voir la situation des clients : solde et historique des opérations.</p>
     </a>
 
+     <a class="tile" href="<?= base_url('admin/commissions') ?>">
+        <span class="tile-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+        </span>
+        <h2>Configuration % en plus de commissions</h2>
+        <p>Configuration % en plus de commissions pour les transferts vers les autres opérateurs </p>
+    </a>
+
 </div>
 
 <?= $this->endSection() ?>

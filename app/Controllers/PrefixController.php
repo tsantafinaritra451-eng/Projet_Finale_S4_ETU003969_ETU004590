@@ -7,16 +7,23 @@ use App\Models\PrefixModel;
 class PrefixController extends BaseController
 {
     protected $prefixModel;
+    protected $db;
 
     public function __construct()
     {
         $this->prefixModel = new PrefixModel();
+        $this->db = \Config\Database::connect();
     }
 
     public function index()
     {
+        $prefixes = $this->db->table('prefix')
+                             ->select('prefix.*, operateur.nom as operateur_nom, operateur.est_interne')
+                             ->join('operateur', 'prefix.idOperateur = operateur.id')
+                             ->get()->getResultArray();
+
         $data = [
-            'prefixes' => $this->prefixModel->findAll()
+            'prefixes' => $prefixes
         ];
 
         return view('admin/listPrefix', $data);
@@ -24,8 +31,12 @@ class PrefixController extends BaseController
 
     public function form($id = null)
     {
+        // On récupère tous les opérateurs pour remplir le <select> de la vue
+        $operateurs = $this->db->table('operateur')->get()->getResultArray();
+
         $data = [
-            'prefix' => null
+            'prefix' => null,
+            'operateurs' => $operateurs
         ];
 
         if ($id !== null) {
@@ -39,27 +50,27 @@ class PrefixController extends BaseController
         return view('admin/formPrefix', $data);
     }
 
-    // SAUVEGARDE (INSERTION OU MISE À JOUR)
+    // SAUVEGARDE
     public function save()
     {
         $id = $this->request->getPost('id');
         $valeur = trim($this->request->getPost('valeur'));
+        $idOperateur = $this->request->getPost('idOperateur');
 
-        // Validation simple
-        if (empty($valeur)) {
-            return redirect()->back()->with('error', 'La valeur du préfixe est requise.')->withInput();
+        // Validation
+        if (empty($valeur) || empty($idOperateur)) {
+            return redirect()->back()->with('error', 'Tous les champs sont requis.')->withInput();
         }
 
         $data = [
-            'valeur' => $valeur
+            'valeur'      => $valeur,
+            'idOperateur' => $idOperateur
         ];
 
         if (!empty($id)) {
-            // Modification
             $this->prefixModel->update($id, $data);
             $message = 'Préfixe modifié avec succès.';
         } else {
-            // Ajout
             $this->prefixModel->insert($data);
             $message = 'Préfixe ajouté avec succès.';
         }
