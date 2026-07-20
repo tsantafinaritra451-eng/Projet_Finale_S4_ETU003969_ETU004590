@@ -1,1 +1,35 @@
-base
+
+CREATE TABLE type (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    libelle VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE frais (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    idType INTEGER NOT NULL,
+    baremeMin REAL NOT NULL,
+    baremeMax REAL NOT NULL,
+    valeur_frais REAL NOT NULL,
+    FOREIGN KEY (idType) REFERENCES type(id) ON DELETE CASCADE
+);
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    numero VARCHAR(50) NOT NULL UNIQUE,
+    date_creation TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE operation (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    idUser INTEGER NOT NULL,                
+    idType INTEGER NOT NULL,                
+    montant REAL NOT NULL,                  
+    date_operation TEXT DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idUser) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (idType) REFERENCES type(id) ON DELETE CASCADE
+);
+
+CREATE TABLE prefix(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    valeur VARCHAR(50)
+);
