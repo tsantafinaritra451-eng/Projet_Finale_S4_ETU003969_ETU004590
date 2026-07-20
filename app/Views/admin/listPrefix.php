@@ -1,54 +1,49 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Préfixes</title>
-</head>
-<body>
+<?= $this->extend('layouts/main') ?>
 
-    <h1>Gestion des Préfixes</h1>
+<?= $this->section('title') ?>Préfixes<?= $this->endSection() ?>
 
-    <?php if (session()->getFlashdata('success')) : ?>
-        <p style="color: green;"><?= session()->getFlashdata('success') ?></p>
-    <?php endif; ?>
+<?= $this->section('content') ?>
 
-    <?php if (session()->getFlashdata('error')) : ?>
-        <p style="color: red;"><?= session()->getFlashdata('error') ?></p>
-    <?php endif; ?>
+<div class="page-header">
+    <h1>Gestion des préfixes</h1>
+    <p>Préfixes de numéro reconnus par l'opérateur lors de la connexion.</p>
+</div>
 
-    <p>
-        <a href="<?= base_url('prefix/form') ?>">+ Ajouter un préfixe</a>
-    </p>
+<p><a class="btn" href="<?= base_url('prefix/form') ?>">Ajouter un préfixe</a></p>
 
-    <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Valeur</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($prefixes) && is_array($prefixes)) : ?>
-                <?php foreach ($prefixes as $p) : ?>
-                    <tr>
-                        <td><?= $p['id'] ?></td>
-                        <td><?= esc($p['valeur']) ?></td>
-                        <td>
-                            <a href="<?= base_url('prefix/form/' . $p['id']) ?>">Modifier</a> |
-                            <a href="<?= base_url('prefix/delete/' . $p['id']) ?>" onclick="return confirm('Confirmer la suppression ?')">Supprimer</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else : ?>
+<div class="card">
+    <div class="table-wrap">
+        <table>
+            <thead>
                 <tr>
-                    <td colspan="3">Aucun préfixe trouvé.</td>
+                    <th>ID</th>
+                    <th>Valeur</th>
+                    <th>Actions</th>
                 </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
-    <a href="<?= base_url('/admin/dashboard') ?>">Retour au Tableau de Bord Admin</a>
-     
-</body>
-</html>
+            </thead>
+            <tbody>
+                <?php if (!empty($prefixes) && is_array($prefixes)) : ?>
+                    <?php foreach ($prefixes as $p) : ?>
+                        <tr>
+                            <td><?= $p['id'] ?></td>
+                            <td><strong><?= esc($p['valeur']) ?></strong></td>
+                            <td>
+                                <div class="actions">
+                                    <a class="btn-link" href="<?= base_url('prefix/form/' . $p['id']) ?>">Modifier</a>
+                                    <a class="btn-link danger" href="<?= base_url('prefix/delete/' . $p['id']) ?>"
+                                       onclick="return confirm('Confirmer la suppression ?')">Supprimer</a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <tr>
+                        <td colspan="3" class="empty">Aucun préfixe configuré.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<?= $this->endSection() ?>

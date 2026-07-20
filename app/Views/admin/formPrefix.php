@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= isset($prefix) ? 'Modifier' : 'Ajouter' ?> un Préfixe</title>
-</head>
-<body>
+<?= $this->extend('layouts/main') ?>
 
-    <h1><?= isset($prefix) ? 'Modifier le préfixe' : 'Ajouter un nouveau préfixe' ?></h1>
+<?= $this->section('title') ?><?= isset($prefix) ? 'Modifier' : 'Ajouter' ?> un préfixe<?= $this->endSection() ?>
 
-    <?php if (session()->getFlashdata('error')) : ?>
-        <p style="color: red;"><?= session()->getFlashdata('error') ?></p>
-    <?php endif; ?>
+<?= $this->section('content') ?>
+
+<div class="page-header">
+    <h1><?= isset($prefix) ? 'Modifier le préfixe' : 'Ajouter un préfixe' ?></h1>
+    <p>Les numéros commençant par ce préfixe seront acceptés à la connexion.</p>
+</div>
+
+<div class="card" style="max-width:440px;">
 
     <form action="<?= base_url('prefix/save') ?>" method="post">
         <?= csrf_field() ?>
@@ -19,15 +17,19 @@
         <!-- Champ caché stockant l'ID s'il s'agit d'une modification -->
         <input type="hidden" name="id" value="<?= isset($prefix) ? $prefix['id'] : '' ?>">
 
-        <p>
-            <label for="valeur">Préfixe :</label>
-            <input type="text" name="valeur" id="valeur" value="<?= isset($prefix) ? esc($prefix['valeur']) : old('valeur') ?>" placeholder="Ex: 032" required>
-        </p>
+        <div class="field">
+            <label for="valeur">Préfixe</label>
+            <input type="text" name="valeur" id="valeur"
+                   value="<?= isset($prefix) ? esc($prefix['valeur']) : old('valeur') ?>"
+                   placeholder="Ex : 032" required autofocus>
+        </div>
 
-        <p>
-            <input type="submit" value="<?= isset($prefix) ? 'Mettre à jour' : 'Enregistrer' ?>">
-        </p>
+        <div class="form-actions">
+            <button type="submit" class="btn"><?= isset($prefix) ? 'Mettre à jour' : 'Enregistrer' ?></button>
+            <a class="btn btn-secondary" href="<?= base_url('prefix') ?>">Annuler</a>
+        </div>
     </form>
-        
-</body>
-</html>
+
+</div>
+
+<?= $this->endSection() ?>

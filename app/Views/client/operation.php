@@ -1,74 +1,80 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nouvelle Opération</title>
-</head>
-<body>
+<?= $this->extend('layouts/main') ?>
 
-    <h2>Effectuer une Opération</h2>
+<?= $this->section('title') ?>Nouvelle opération<?= $this->endSection() ?>
 
-    <div id="message" style="margin-bottom: 15px; font-weight: bold;"></div>
+<?= $this->section('content') ?>
+
+<div class="page-header">
+    <h1>Effectuer une opération</h1>
+    <p>L'opération est enregistrée automatiquement dès que vous quittez le champ montant.</p>
+</div>
+
+<div class="card" style="max-width:480px;">
+
+    <div id="message"></div>
 
     <form id="operationForm">
         <?= csrf_field() ?>
 
-        <p>
-            <label for="idType">Type d'opération :</label>
+        <div class="field">
+            <label for="idType">Type d'opération</label>
             <select name="idType" id="idType" required>
                 <?php foreach ($types as $type) : ?>
-                    <option value="<?= $type['id'] ?>"><?= esc($type['libelle']) ?></option>
+                    <option value="<?= $type['id'] ?>"><?= esc(ucfirst($type['libelle'])) ?></option>
                 <?php endforeach; ?>
             </select>
-        </p>
+        </div>
 
-        <p>
-            <label for="montant">Montant :</label>
+        <div class="field">
+            <label for="montant">Montant (Ar)</label>
             <input type="number" step="0.01" name="montant" id="montant" placeholder="Entrer le montant" required>
-        </p>
+            <p class="hint">Les frais applicables sont calculés selon le barème en vigueur.</p>
+        </div>
+
     </form>
 
-    <script>
-        document.getElementById('montant').addEventListener('blur', function () {
-            let montantInput = this;
-            let montantVal = montantInput.value.trim();
-            let messageDiv = document.getElementById('message');
+</div>
 
-            messageDiv.innerText = '';
+<script>
+    document.getElementById('montant').addEventListener('blur', function () {
+        let montantInput = this;
+        let montantVal = montantInput.value.trim();
+        let messageDiv = document.getElementById('message');
 
-            if (montantVal === '' || parseFloat(montantVal) <= 0) {
-                return;
+        messageDiv.innerText = '';
+        messageDiv.className = '';
+
+        if (montantVal === '' || parseFloat(montantVal) <= 0) {
+            return;
+        }
+
+        let formData = new FormData(document.getElementById('operationForm'));
+
+        fetch('<?= base_url('operation/save') ?>', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
             }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                messageDiv.className = 'alert alert-success';
+                messageDiv.innerText = data.message;
 
-            let formData = new FormData(document.getElementById('operationForm'));
-
-            fetch('<?= base_url('operation/save') ?>', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    messageDiv.style.color = 'green';
-                    messageDiv.innerText = data.message;
-                    
-                    montantInput.value = '';
-                } else {
-                    messageDiv.style.color = 'red';
-                    messageDiv.innerText = data.message;
-                }
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-                messageDiv.style.color = 'red';
-                messageDiv.innerText = "Une erreur est survenue lors de l'enregistrement.";
-            });
+                montantInput.value = '';
+            } else {
+                messageDiv.className = 'alert alert-error';
+                messageDiv.innerText = data.message;
+            }
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+            messageDiv.className = 'alert alert-error';
+            messageDiv.innerText = "Une erreur est survenue lors de l'enregistrement.";
         });
-    </script>
+    });
+</script>
 
-</body>
-</html>
+<?= $this->endSection() ?>

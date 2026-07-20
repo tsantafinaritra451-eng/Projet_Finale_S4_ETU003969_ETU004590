@@ -26,8 +26,10 @@
 - Calcul des gains via les frais : (Miantra)
     - retrait (Miantra)
     - transfert (Miantra)
+    - creer fonction pour inserer le frais des operation dans la table fraisObtenu
+    - creer fonction pour sommer les frais selon le type
 - Voir situation compte client (Tsanta)
-    - creation de d'une model OperationModel avec tout les champs de la table operation avec une fonction getHistoriqueParUser c'est une script avec 
+    - creation d'une model OperationModel avec tout les champs de la table operation avec une fonction getHistoriqueParUser c'est une script avec 
 jointure pour avoir l'historique de tout les clients
     - creation de clientController pour avoir tout les clients ainsi qu'une methode de situation pour voir ses historiques  et ses solde
     - creation de la routes clients
@@ -51,4 +53,5 @@ jointure pour avoir l'historique de tout les clients
     - creer fonction calculer solde user connecter
     - creer fonction ajouter operation 
     - appeler fonction recuperer frais
+    - appeler fonction inserer frais obtenu
 - Voir historique (Tsanta)

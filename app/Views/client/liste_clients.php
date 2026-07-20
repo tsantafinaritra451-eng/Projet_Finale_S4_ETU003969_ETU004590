@@ -1,48 +1,47 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Liste des Clients</title>
-</head>
-<body>
+<?= $this->extend('layouts/main') ?>
 
-    <h1>Gestion et Suivi des Clients</h1>
+<?= $this->section('title') ?>Comptes clients<?= $this->endSection() ?>
 
-    <?php if (session()->getFlashdata('error')): ?>
-        <p style="color: red;"><?= session()->getFlashdata('error') ?></p>
-    <?php endif; ?>
+<?= $this->section('content') ?>
 
-    <table border="1" cellpadding="10" cellspacing="0">
-        <thead>
-            <tr>
-                <th>ID Utilisateur</th>
-                <th>Numéro de Téléphone</th>
-                <th>Date d'inscription</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($users)): ?>
-                <?php foreach($users as $u): ?>
-                    <tr>
-                        <td><?= $u['id'] ?></td>
-                        <td><b><?= $u['numero'] ?></b></td>
-                        <td><?= $u['date_creation'] ?></td>
-                        <td>
-                            <a href="<?= base_url('/admin/clients/situation/'.$u['id']) ?>">Voir situation</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
+<div class="page-header">
+    <h1>Comptes clients</h1>
+    <p>Suivi des clients enregistrés sur la plateforme.</p>
+</div>
+
+<div class="card">
+    <div class="table-wrap">
+        <table>
+            <thead>
                 <tr>
-                    <td colspan="4">Aucun client enregistré pour le moment.</td>
+                    <th>ID</th>
+                    <th>Numéro de téléphone</th>
+                    <th>Date d'inscription</th>
+                    <th>Action</th>
                 </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php if (!empty($users)) : ?>
+                    <?php foreach ($users as $u) : ?>
+                        <tr>
+                            <td><?= $u['id'] ?></td>
+                            <td><strong><?= esc($u['numero']) ?></strong></td>
+                            <td><?= esc($u['date_creation']) ?></td>
+                            <td>
+                                <a class="btn-link" href="<?= base_url('admin/clients/situation/' . $u['id']) ?>">
+                                    Voir la situation
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <tr>
+                        <td colspan="4" class="empty">Aucun client enregistré pour le moment.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    <br>
-    <a href="<?= base_url('/admin/dashboard') ?>">Retour au Tableau de Bord Admin</a>
-
-</body>
-</html>
+<?= $this->endSection() ?>

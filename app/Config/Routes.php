@@ -59,6 +59,7 @@ $routes->get('/client/historique', 'ClientController::historiqueParClient');
 // $routes->post('/achat/valider', 'AchatController::valider');
 $routes->get('/', 'UserController::index');
 $routes->post('/user/login', 'UserController::login');
+$routes->get('/logout', 'UserController::logout');
 $routes->get('/client/dashboard', 'UserController::dashboardClient');
 $routes->get('/admin/dashboard', 'UserController::dashboardAdmin');
 

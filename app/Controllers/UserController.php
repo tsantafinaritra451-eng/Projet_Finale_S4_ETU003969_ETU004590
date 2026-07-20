@@ -73,6 +73,14 @@ class UserController extends BaseController
     }
 
 
+    public function logout()
+    {
+        session()->destroy();
+
+        return redirect()->to('/');
+    }
+
+
     public function dashboardAdmin()
     {
         return view('admin/dashboard');
