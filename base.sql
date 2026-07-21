@@ -47,6 +47,16 @@ CREATE TABLE operation (
     FOREIGN KEY (idOperationParent) REFERENCES operation(id) ON DELETE SET NULL
 );
 
+
+
+CREATE TABLE promotion(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pourcentage REAL DEFAULT 0.0
+);
+
+
+INSERT INTO promotion (pourcentage) VALUES (50);
+
 -- ==========================================
 -- INSERTIONS INITIALES & DONNÉES DE TEST
 -- ==========================================

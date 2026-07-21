@@ -7,6 +7,8 @@ use App\Models\TypeModel;
 use App\Models\FraisModel;
 use App\Models\UserModel;
 use App\Models\PrefixModel;
+use App\Models\PromotionModel;
+
 use CodeIgniter\Database\Config;
 
 class OperationController extends BaseController
@@ -31,7 +33,7 @@ class OperationController extends BaseController
     {
         if (!$this->request->isAJAX()) {
             return $this->response->setJSON([
-                'status'  => 'error',
+                'status' => 'error',
                 'message' => 'Accès non autorisé.'
             ]);
         }
@@ -43,14 +45,14 @@ class OperationController extends BaseController
 
         if (!$userId) {
             return $this->response->setJSON([
-                'status'  => 'error',
+                'status' => 'error',
                 'message' => 'Utilisateur non connecté ou session expirée.'
             ]);
         }
 
         if ($montant <= 0) {
             return $this->response->setJSON([
-                'status'  => 'error',
+                'status' => 'error',
                 'message' => 'Le montant doit être supérieur à 0.'
             ]);
         }
@@ -60,27 +62,32 @@ class OperationController extends BaseController
 
         if (!$type) {
             return $this->response->setJSON([
-                'status'  => 'error',
+                'status' => 'error',
                 'message' => 'Type d\'opération invalide.'
             ]);
         }
 
         $libelleType = mb_strtolower(trim($type['libelle']));
-        $userModel   = new UserModel();
-        $expediteur  = $userModel->find($userId);
-        $db          = Config::connect();
+        $userModel = new UserModel();
+        $expediteur = $userModel->find($userId);
+        $db = Config::connect();
 
         // -------------------------------------------------------------
         // CAS 1 : TRANSFERT (DIVISÉ ÉQUITABLEMENT)
         // -------------------------------------------------------------
         if ($libelleType === 'transfert') {
 
+            $promotionModel = new PromotionModel();
+
+            $pourcentage = $promotionModel->findAll();
+
+
             $numerosBruts = $this->request->getPost('numeros_destinataires');
             $numeros = [];
 
             if (is_array($numerosBruts)) {
                 foreach ($numerosBruts as $num) {
-                    $numTrim = trim((string)$num);
+                    $numTrim = trim((string) $num);
                     if (!empty($numTrim)) {
                         $numeros[] = $numTrim;
                     }
@@ -89,7 +96,7 @@ class OperationController extends BaseController
 
             if (empty($numeros)) {
                 return $this->response->setJSON([
-                    'status'  => 'error',
+                    'status' => 'error',
                     'message' => 'Veuillez saisir au moins un numéro destinataire.'
                 ]);
             }
@@ -103,14 +110,14 @@ class OperationController extends BaseController
                 $destinataire = $userModel->where('numero', $numero)->first();
                 if (!$destinataire) {
                     return $this->response->setJSON([
-                        'status'  => 'error',
+                        'status' => 'error',
                         'message' => 'Le numéro destinataire ' . esc($numero) . ' n\'existe pas dans le système.'
                     ]);
                 }
 
                 if ($expediteur && $expediteur['numero'] === $numero) {
                     return $this->response->setJSON([
-                        'status'  => 'error',
+                        'status' => 'error',
                         'message' => 'Vous ne pouvez pas effectuer un transfert vers votre propre numéro (' . esc($numero) . ').'
                     ]);
                 }
@@ -118,7 +125,7 @@ class OperationController extends BaseController
                 $operateur = $this->obtenirOperateurParNumero($numero);
                 if (!$operateur) {
                     return $this->response->setJSON([
-                        'status'  => 'error',
+                        'status' => 'error',
                         'message' => 'Opérateur introuvable pour le numéro : ' . esc($numero)
                     ]);
                 }
@@ -128,7 +135,7 @@ class OperationController extends BaseController
                     $opRecepteur = $operateur;
                 } elseif ($idOperateurReference !== $operateur['id']) {
                     return $this->response->setJSON([
-                        'status'  => 'error',
+                        'status' => 'error',
                         'message' => 'Erreur : Tous les numéros destinataires doivent appartenir au MÊME opérateur.'
                     ]);
                 }
@@ -153,8 +160,12 @@ class OperationController extends BaseController
             $memeOperateur = ($opExpediteur && $opRecepteur && $opExpediteur['id'] === $opRecepteur['id']);
 
             if (!$memeOperateur) {
-                $pctCommission = isset($opRecepteur['commission_pct']) ? (float)$opRecepteur['commission_pct'] : 0.0;
+                $pctCommission = isset($opRecepteur['commission_pct']) ? (float) $opRecepteur['commission_pct'] : 0.0;
                 $commissionOpRecepteur = ($fraisUnitaire * $pctCommission) / 100;
+            }
+
+            if ($memeOperateur) {
+                $fraisTotal = ((float) $pourcentage * $fraisUnitaire) / 100;
             }
 
             // 6. Vérification du solde global de l'expéditeur
@@ -163,14 +174,14 @@ class OperationController extends BaseController
 
             if ($montantTotalDebite > $soldeActuel) {
                 return $this->response->setJSON([
-                    'status'  => 'error',
+                    'status' => 'error',
                     'message' => 'Solde insuffisant ! Requis : ' . number_format($montantTotalDebite, 2, ',', ' ') . ' Ar (Montant: ' . number_format($montant, 2, ',', ' ') . ' + Frais: ' . number_format($fraisTotal, 2, ',', ' ') . ' Ar)'
                 ]);
             }
 
             // 7. Obtenir les types d'opérations
             $typeTransfert = $typeModel->where('libelle', 'transfert')->first();
-            $typeDepot     = $typeModel->where('libelle', 'depot')->first();
+            $typeDepot = $typeModel->where('libelle', 'depot')->first();
 
             // 8. Enregistrement transactionnel (double écriture par destinataire)
             $db->transStart();
@@ -178,33 +189,33 @@ class OperationController extends BaseController
             foreach ($destinatairesValides as $destinataire) {
                 // Débit individuel chez l'expéditeur
                 $this->operationModel->insert([
-                    'idUser'               => $userId,
-                    'idType'               => $typeTransfert['id'],
-                    'montant'              => $montantParDestinataire + $fraisUnitaire,
-                    'numero_destinataire'  => $destinataire['numero'],
-                    'frais_notre_gain'     => $fraisUnitaire,
+                    'idUser' => $userId,
+                    'idType' => $typeTransfert['id'],
+                    'montant' => $montantParDestinataire + $fraisTotal,
+                    'numero_destinataire' => $destinataire['numero'],
+                    'frais_notre_gain' => $fraisTotal,
                     'commission_operateur' => 0.0,
-                    'idOperationParent'    => null
+                    'idOperationParent' => null
                 ]);
 
                 $idParent = $this->operationModel->getInsertID();
 
                 // Crédit de la part exacte reçue chez le destinataire
                 $this->operationModel->insert([
-                    'idUser'               => $destinataire['id'],
-                    'idType'               => $typeDepot['id'],
-                    'montant'              => $montantParDestinataire,
-                    'numero_destinataire'  => null,
-                    'frais_notre_gain'     => 0.0,
+                    'idUser' => $destinataire['id'],
+                    'idType' => $typeDepot['id'],
+                    'montant' => $montantParDestinataire,
+                    'numero_destinataire' => null,
+                    'frais_notre_gain' => 0.0,
                     'commission_operateur' => $commissionOpRecepteur,
-                    'idOperationParent'    => $idParent
+                    'idOperationParent' => $idParent
                 ]);
             }
 
             $db->transComplete();
 
             return $this->response->setJSON([
-                'status'  => 'success',
+                'status' => 'success',
                 'message' => 'Transfert effectué ! Chaque destinataire (' . $nbDestinataires . ') a reçu ' . number_format($montantParDestinataire, 2, ',', ' ') . ' Ar.'
             ]);
         }
@@ -218,7 +229,7 @@ class OperationController extends BaseController
 
             if (empty($numeroDestinataire)) {
                 return $this->response->setJSON([
-                    'status'  => 'error',
+                    'status' => 'error',
                     'message' => 'Veuillez saisir le numéro du destinataire.'
                 ]);
             }
@@ -226,7 +237,7 @@ class OperationController extends BaseController
             $destinataire = $userModel->where('numero', $numeroDestinataire)->first();
             if (!$destinataire) {
                 return $this->response->setJSON([
-                    'status'  => 'error',
+                    'status' => 'error',
                     'message' => 'Le numéro destinataire n\'existe pas.'
                 ]);
             }
@@ -236,7 +247,7 @@ class OperationController extends BaseController
             $fraisExpediteur = 0.0;
 
             if ($expediteur && $this->estOperateurInterne($expediteur['numero'])) {
-                $fraisModel      = new FraisModel();
+                $fraisModel = new FraisModel();
                 $fraisExpediteur = (float) $fraisModel->getFraisAliquer($idType, $montant);
             }
 
@@ -245,36 +256,36 @@ class OperationController extends BaseController
             // le solde n'est amputé que du montant et les frais sont retenus sur ce que reçoit
             // le destinataire. Dans les deux cas : débit = reçu + frais acquis à l'opérateur.
             $montantRetrait = $inclureFrais ? ($montant + $fraisExpediteur) : $montant;
-            $montantRecu    = $montantRetrait - $fraisExpediteur;
-            $soldeActuel    = $this->calculerSolde($userId);
+            $montantRecu = $montantRetrait - $fraisExpediteur;
+            $soldeActuel = $this->calculerSolde($userId);
 
             if ($montantRecu <= 0) {
                 return $this->response->setJSON([
-                    'status'  => 'error',
+                    'status' => 'error',
                     'message' => 'Montant trop faible : les frais (' . number_format($fraisExpediteur, 2, ',', ' ') . ' Ar) absorbent la totalité du retrait. Cochez « Inclure les frais » ou augmentez le montant.'
                 ]);
             }
 
             if ($montantRetrait > $soldeActuel) {
                 return $this->response->setJSON([
-                    'status'  => 'error',
+                    'status' => 'error',
                     'message' => 'Solde insuffisant ! (Solde actuel : ' . number_format($soldeActuel, 2, ',', ' ') . ' Ar)'
                 ]);
             }
 
             $typeRetrait = $typeModel->where('libelle', 'retrait')->first();
-            $typeDepot   = $typeModel->where('libelle', 'depot')->first();
+            $typeDepot = $typeModel->where('libelle', 'depot')->first();
 
             $db->transStart();
 
             $this->operationModel->insert([
-                'idUser'               => $userId,
-                'idType'               => $typeRetrait['id'],
-                'montant'              => $montantRetrait,
-                'numero_destinataire'  => $numeroDestinataire,
-                'frais_notre_gain'     => $fraisExpediteur,
+                'idUser' => $userId,
+                'idType' => $typeRetrait['id'],
+                'montant' => $montantRetrait,
+                'numero_destinataire' => $numeroDestinataire,
+                'frais_notre_gain' => $fraisExpediteur,
                 'commission_operateur' => 0.0,
-                'idOperationParent'    => null
+                'idOperationParent' => null
             ]);
 
             $idOperationParent = $this->operationModel->getInsertID();
@@ -282,19 +293,19 @@ class OperationController extends BaseController
             // L'opérateur du destinataire ne perçoit rien sur un retrait :
             // le barème appartient entièrement à l'opérateur de l'expéditeur.
             $this->operationModel->insert([
-                'idUser'               => $destinataire['id'],
-                'idType'               => $typeDepot['id'],
-                'montant'              => $montantRecu,
-                'numero_destinataire'  => null,
-                'frais_notre_gain'     => 0.0,
+                'idUser' => $destinataire['id'],
+                'idType' => $typeDepot['id'],
+                'montant' => $montantRecu,
+                'numero_destinataire' => null,
+                'frais_notre_gain' => 0.0,
                 'commission_operateur' => 0.0,
-                'idOperationParent'    => $idOperationParent
+                'idOperationParent' => $idOperationParent
             ]);
 
             $db->transComplete();
 
             return $this->response->setJSON([
-                'status'  => 'success',
+                'status' => 'success',
                 'message' => 'Retrait/Envoi réussi vers le ' . esc($numeroDestinataire) . ' ! Reçu : ' . number_format($montantRecu, 2, ',', ' ') . ' Ar (frais : ' . number_format($fraisExpediteur, 2, ',', ' ') . ' Ar).'
             ]);
         }
@@ -310,20 +321,20 @@ class OperationController extends BaseController
 
             if ($expediteur && $this->estOperateurInterne($expediteur['numero'])) {
                 $fraisModel = new FraisModel();
-                $frais      = (float) $fraisModel->getFraisAliquer($idType, $montant);
+                $frais = (float) $fraisModel->getFraisAliquer($idType, $montant);
             }
 
             $this->operationModel->insert([
-                'idUser'               => $userId,
-                'idType'               => $idType,
-                'montant'              => $montant - $frais,
-                'numero_destinataire'  => null,
-                'frais_notre_gain'     => $frais,
+                'idUser' => $userId,
+                'idType' => $idType,
+                'montant' => $montant - $frais,
+                'numero_destinataire' => null,
+                'frais_notre_gain' => $frais,
                 'commission_operateur' => 0.0
             ]);
 
             return $this->response->setJSON([
-                'status'  => 'success',
+                'status' => 'success',
                 'message' => 'Dépôt de ' . number_format($montant, 2, ',', ' ') . ' Ar effectué sur votre compte avec succès !'
             ]);
         }
@@ -363,8 +374,8 @@ class OperationController extends BaseController
     {
         $resultats = $this->operationModel->getTotauxParType($userId);
 
-        $depots     = 0;
-        $retraits   = 0;
+        $depots = 0;
+        $retraits = 0;
         $transferts = 0;
 
         foreach ($resultats as $row) {

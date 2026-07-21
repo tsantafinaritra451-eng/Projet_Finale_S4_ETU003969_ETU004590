@@ -1,0 +1,60 @@
+CRITICAL - 2026-07-21 07:21:55 --> TypeError: Unsupported operand types: array * float
+[Method: POST, Route: operation/save]
+in APPPATH/Controllers/OperationController.php on line 166.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\OperationController->save()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-FINAL/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-21 07:22:48 --> TypeError: Unsupported operand types: array * float
+[Method: POST, Route: operation/save]
+in APPPATH/Controllers/OperationController.php on line 166.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\OperationController->save()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-FINAL/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-21 07:23:40 --> TypeError: Unsupported operand types: array * float
+[Method: POST, Route: operation/save]
+in APPPATH/Controllers/OperationController.php on line 166.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\OperationController->save()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-FINAL/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-21 07:26:01 --> TypeError: Unsupported operand types: array * float
+[Method: POST, Route: operation/save]
+in APPPATH/Controllers/OperationController.php on line 169.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\OperationController->save()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-FINAL/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-21 07:28:19 --> TypeError: Unsupported operand types: array * float
+[Method: POST, Route: operation/save]
+in APPPATH/Controllers/OperationController.php on line 169.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\OperationController->save()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-FINAL/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')
+CRITICAL - 2026-07-21 07:29:47 --> TypeError: Unsupported operand types: array * float
+[Method: POST, Route: operation/save]
+in APPPATH/Controllers/OperationController.php on line 169.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\OperationController->save()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/miantra/Documents/S4/Prog/SI/PROJET-FINAL/Projet_Finale_S4_ETU003969_ETU004590/public/index.php')

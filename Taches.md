@@ -86,3 +86,26 @@ jointure pour avoir l'historique de tout les clients
 - (ok)verifier le prefixe du numero a faire pour l'operation  (Miantra)
 - envoie multiple : chez meme operateur   (Miantra)
 
+
+
+- promotion en % des frais de transfert vers meme operateur
+- % en base
+
+
+
+----------------------------------------------------------------------------------------------
+### Alea 
+
+### Base 
+- creer table promotion (id,pourcentage)
+
+
+
+### Cote operateur
+- creer fonction recuperer promotion
+- creer fonction verifier memeOperateur
+- creer fonction calculer fraisMoinsPourcentage
+
+
+
+
