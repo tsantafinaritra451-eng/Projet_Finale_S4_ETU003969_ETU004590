@@ -36,7 +36,8 @@ CREATE TABLE operation (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     idUser INTEGER NOT NULL,                
     idType INTEGER NOT NULL,                
-    montant REAL NOT NULL,                      -- Montant net envoyé/reçu/retiré
+    montant REAL NOT NULL,  
+    montant_eparne REAL NOT NULL, 
     numero_destinataire VARCHAR(50) DEFAULT NULL, -- Le numéro qui reçoit (si transfert)
     frais_notre_gain REAL DEFAULT 0.0,          -- Ce qui reste chez nous (notre gain)
     commission_operateur REAL DEFAULT 0.0,       -- Gain de l'autre opérateur (reversé)
@@ -53,6 +54,16 @@ CREATE TABLE promotion(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     pourcentage REAL DEFAULT 0.0
 );
+
+CREATE TABLE eparne(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pourcentage REAL DEFAULT 0.0,
+    idUser INTEGER NOT NULL,  
+    FOREIGN KEY (idUser) REFERENCES user(id) ON DELETE CASCADE
+
+);
+
+
 
 
 INSERT INTO promotion (pourcentage) VALUES (50);

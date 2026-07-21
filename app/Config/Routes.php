@@ -19,6 +19,10 @@ $routes->get('/client/historique', 'ClientController::historiqueParClient');
 $routes->get('/admin/commissions', 'OperateurController::index');
 $routes->post('/admin/commissions/save', 'OperateurController::saveCommission');
 $routes->get('/admin/montants_a_envoyer', 'UserController::montantsAEnvoyer');
+$routes->get('/client/eparne', 'EparneController::index');
+$routes->post('/client/saveEparne', 'EparneController::ajouterEparne');
+
+
 
 
 

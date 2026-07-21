@@ -18,6 +18,7 @@ class OperationModel extends Model
         'idUser',
         'idType',
         'montant',
+        'montant_eparne',
         'numero_destinataire',   // Manquant
         'frais_notre_gain',      // Manquant (Ton gain Telmo)
         'commission_operateur',  // Manquant (Gain de l'autre opérateur)

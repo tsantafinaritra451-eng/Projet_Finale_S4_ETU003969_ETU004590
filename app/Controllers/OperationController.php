@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\EparneModel;
 use App\Models\OperationModel;
 use App\Models\TypeModel;
 use App\Models\FraisModel;
@@ -78,8 +79,12 @@ class OperationController extends BaseController
         if ($libelleType === 'transfert') {
 
             $promotionModel = new PromotionModel();
+            $eparneModel = new EparneModel();
 
+             $pourcentageE = $this->request->get('pourcentage');
             $pourcentage = $promotionModel->findAll();
+            $pourcentageEparne = $eparneModel->find($pourcentage);
+
 
 
             $numerosBruts = $this->request->getPost('numeros_destinataires');
@@ -147,6 +152,8 @@ class OperationController extends BaseController
             $nbDestinataires = count($destinatairesValides);
             $montantParDestinataire = $montant / $nbDestinataires;
 
+            $montantEparne = (float)($montantParDestinataire * $pourcentageEparne )/100;
+
             // 3. Identification de l'opérateur de l'expéditeur
             $opExpediteur = $this->obtenirOperateurParNumero($expediteur['numero']);
 
@@ -192,6 +199,7 @@ class OperationController extends BaseController
                     'idUser' => $userId,
                     'idType' => $typeTransfert['id'],
                     'montant' => $montantParDestinataire + $fraisTotal,
+                    'montant_eparne' => $montantEparne , 
                     'numero_destinataire' => $destinataire['numero'],
                     'frais_notre_gain' => $fraisTotal,
                     'commission_operateur' => 0.0,
@@ -205,6 +213,7 @@ class OperationController extends BaseController
                     'idUser' => $destinataire['id'],
                     'idType' => $typeDepot['id'],
                     'montant' => $montantParDestinataire,
+                    'montant_eparne' => $montantEparne , 
                     'numero_destinataire' => null,
                     'frais_notre_gain' => 0.0,
                     'commission_operateur' => $commissionOpRecepteur,
@@ -282,6 +291,7 @@ class OperationController extends BaseController
                 'idUser' => $userId,
                 'idType' => $typeRetrait['id'],
                 'montant' => $montantRetrait,
+                 'montant_eparne' => $montantEparne , 
                 'numero_destinataire' => $numeroDestinataire,
                 'frais_notre_gain' => $fraisExpediteur,
                 'commission_operateur' => 0.0,
@@ -328,6 +338,8 @@ class OperationController extends BaseController
                 'idUser' => $userId,
                 'idType' => $idType,
                 'montant' => $montant - $frais,
+                'montant' => $montant - $frais,
+
                 'numero_destinataire' => null,
                 'frais_notre_gain' => $frais,
                 'commission_operateur' => 0.0

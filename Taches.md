@@ -107,5 +107,8 @@ jointure pour avoir l'historique de tout les clients
 - creer fonction calculer fraisMoinsPourcentage
 
 
-
+- cree table eparne(id, pourcentage, montannt_epargne, id_client)
+- cree model eparne
+- cree controlleur pour inseret le pourcentage
+- tra
 
