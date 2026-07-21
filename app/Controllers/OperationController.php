@@ -240,10 +240,20 @@ class OperationController extends BaseController
                 $fraisExpediteur = (float) $fraisModel->getFraisAliquer($idType, $montant);
             }
 
-            // « Inclure les frais » ne joue que sur le débit du solde : sans cette option
-            // le solde n'est amputé que du montant, mais le barème reste acquis à l'opérateur.
+            // « Inclure les frais » désigne qui supporte le barème. Avec l'option, l'expéditeur
+            // paie les frais en plus pour que le destinataire touche le montant plein ; sans elle,
+            // le solde n'est amputé que du montant et les frais sont retenus sur ce que reçoit
+            // le destinataire. Dans les deux cas : débit = reçu + frais acquis à l'opérateur.
             $montantRetrait = $inclureFrais ? ($montant + $fraisExpediteur) : $montant;
+            $montantRecu    = $montantRetrait - $fraisExpediteur;
             $soldeActuel    = $this->calculerSolde($userId);
+
+            if ($montantRecu <= 0) {
+                return $this->response->setJSON([
+                    'status'  => 'error',
+                    'message' => 'Montant trop faible : les frais (' . number_format($fraisExpediteur, 2, ',', ' ') . ' Ar) absorbent la totalité du retrait. Cochez « Inclure les frais » ou augmentez le montant.'
+                ]);
+            }
 
             if ($montantRetrait > $soldeActuel) {
                 return $this->response->setJSON([
@@ -274,7 +284,7 @@ class OperationController extends BaseController
             $this->operationModel->insert([
                 'idUser'               => $destinataire['id'],
                 'idType'               => $typeDepot['id'],
-                'montant'              => $montant,
+                'montant'              => $montantRecu,
                 'numero_destinataire'  => null,
                 'frais_notre_gain'     => 0.0,
                 'commission_operateur' => 0.0,
@@ -285,7 +295,7 @@ class OperationController extends BaseController
 
             return $this->response->setJSON([
                 'status'  => 'success',
-                'message' => 'Retrait/Envoi réussi vers le ' . esc($numeroDestinataire) . ' !'
+                'message' => 'Retrait/Envoi réussi vers le ' . esc($numeroDestinataire) . ' ! Reçu : ' . number_format($montantRecu, 2, ',', ' ') . ' Ar (frais : ' . number_format($fraisExpediteur, 2, ',', ' ') . ' Ar).'
             ]);
         }
 

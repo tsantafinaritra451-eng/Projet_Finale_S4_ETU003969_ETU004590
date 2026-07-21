@@ -50,7 +50,10 @@ class OperationModel extends Model
             ->select('type.libelle, SUM(operation.frais_notre_gain) as totalGains')
             ->join('type', 'type.id = operation.idType')
             ->join('user', 'operation.idUser = user.id', 'inner')
-            ->join('prefix', 'SUBSTR(COALESCE(operation.numero_destinataire, user.numero), 1, 3) = prefix.valeur', 'inner')
+            // Le frais est prélevé sur celui qui porte l'opération : le gain revient donc à
+            // SON opérateur, jamais à celui du destinataire (sinon un retrait vers un numéro
+            // externe sortirait du périmètre interne et le gain disparaîtrait des totaux).
+            ->join('prefix', 'SUBSTR(user.numero, 1, 3) = prefix.valeur', 'inner')
             ->join('operateur', 'prefix.idOperateur = operateur.id', 'inner')
             ->where('operateur.est_interne', 1) // 1 = Uniquement Telmo !
             ->groupBy('operation.idType')
