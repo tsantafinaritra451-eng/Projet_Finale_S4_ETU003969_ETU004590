@@ -8,9 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 
 
 // ------------------------TSANTA----------------------------------
-// $routes->get('/caisse', 'CaisseController::index');
-// $routes->post('/caisse/selectionner', 'CaisseController::selectionner');
-// $routes->get('/Achats', 'AchatController::index');
 $routes->get('/admin/frais', 'FraisController::index');
 $routes->post('/admin/frais/ajout', 'FraisController::ajoutBareme');
 $routes->get('/admin/frais/supprimer/(:num)', 'FraisController::supprimerBareme/$1');
@@ -53,10 +50,6 @@ $routes->get('/admin/montants_a_envoyer', 'UserController::montantsAEnvoyer');
 
 
 // -------------------------------Miantra----------------------------------
-// $routes->get('/', 'AuthController::index');
-// $routes->post('/login', 'AuthController::login');
-// $routes->get('/logout', 'AuthController::logout');
-// $routes->post('/achat/valider', 'AchatController::valider');
 $routes->get('/', 'UserController::index');
 $routes->post('/user/login', 'UserController::login');
 $routes->get('/logout', 'UserController::logout');
