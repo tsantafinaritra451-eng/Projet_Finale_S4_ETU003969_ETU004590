@@ -45,6 +45,14 @@
                     </tr>
                 <?php endif; ?>
             </tbody>
+            <tfoot>
+                <tr style="border-top: 2px solid #333;">
+                    <th style="text-align: left; padding-top: 10px;">Gain total Telmo</th>
+                    <td class="num" style="text-align: right; padding-top: 10px; font-weight: bold; font-size: 1.15em;">
+                        <?= number_format($totalTelmo, 2, ',', ' ') ?> Ar
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
@@ -83,6 +91,14 @@
                     </tr>
                 <?php endif; ?>
             </tbody>
+            <tfoot>
+                <tr style="border-top: 2px solid #333;">
+                    <th style="text-align: left; padding-top: 10px;">Total reversé aux tiers</th>
+                    <td class="num" style="text-align: right; padding-top: 10px; color: #cc0000; font-weight: bold; font-size: 1.15em;">
+                        <?= number_format($totalAutres, 2, ',', ' ') ?> Ar
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>

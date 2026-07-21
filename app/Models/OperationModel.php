@@ -76,18 +76,20 @@ class OperationModel extends Model
 
     public function getCommissionsAEnvoyer()
     {
+        // La commission est portée par la ligne de CRÉDIT (le dépôt chez le destinataire),
+        // pas par la ligne de transfert : c'est donc l'opérateur du propriétaire de la ligne
+        // qui doit être payé, et son numero_destinataire est NULL.
         return $this->db->table('operation')
             ->select('
-            operateur.nom as operateur_nom, 
-            COUNT(operation.id) as nombre_transactions, 
+            operateur.nom as operateur_nom,
+            COUNT(operation.id) as nombre_transactions,
             SUM(operation.commission_operateur) as total_commissions
         ')
-            ->from('prefix')
-            ->join('operateur', 'prefix.idOperateur = operateur.id')
-            ->join('type', 'operation.idType = type.id')
-            ->where('LOWER(type.libelle)', 'transfert')
+            ->join('user', 'operation.idUser = user.id', 'inner')
+            ->join('prefix', 'SUBSTR(user.numero, 1, 3) = prefix.valeur', 'inner')
+            ->join('operateur', 'prefix.idOperateur = operateur.id', 'inner')
             ->where('operateur.est_interne', 0) // Uniquement les opérateurs externes
-            ->where('SUBSTR(operation.numero_destinataire, 1, 3) = prefix.valeur', null, false)
+            ->where('operation.commission_operateur >', 0)
             ->groupBy('operateur.id')
             ->get()->getResultArray();
     }

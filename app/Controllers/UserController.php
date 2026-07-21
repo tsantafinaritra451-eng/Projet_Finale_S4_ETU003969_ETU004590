@@ -104,19 +104,23 @@ class UserController extends BaseController
 
         $gainsAutres = $operationModel->getGainsAutresOperateurs();
 
-        // 3. Calcul du total général cumulé
-        $totalGeneral = 0;
+        // 3. Totaux : ce que Telmo encaisse, ce qui part chez les tiers, et le cumul
+        $totalTelmo = 0;
         foreach ($nosGains as $gain) {
-            $totalGeneral += (float) $gain['totalGains'];
+            $totalTelmo += (float) $gain['totalGains'];
         }
+
+        $totalAutres = 0;
         foreach ($gainsAutres as $gain) {
-            $totalGeneral += (float) $gain['totalGains'];
+            $totalAutres += (float) $gain['totalGains'];
         }
 
         return view('admin/gains', [
             'nosGains' => $nosGains,
             'gainsAutres' => $gainsAutres,
-            'totalGeneral' => $totalGeneral
+            'totalTelmo' => $totalTelmo,
+            'totalAutres' => $totalAutres,
+            'totalGeneral' => $totalTelmo + $totalAutres
         ]);
     }
 
